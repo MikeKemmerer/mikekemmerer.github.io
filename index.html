@@ -26,7 +26,7 @@
 <!-- ═══════════════════════ NAVIGATION ═══════════════════════ -->
 <nav class="nav" id="nav">
   <div class="nav-inner">
-    <a href="#hero" class="nav-logo">MK</a>
+    <a href="#intro" class="nav-logo">MK</a>
     <div class="nav-links" id="navLinks">
       <a href="#story">The Story</a>
       <a href="#livestream">Streaming</a>
@@ -42,19 +42,19 @@
   </div>
 </nav>
 
-<!-- ═══════════════════════ HERO ═══════════════════════ -->
-<section id="hero" class="hero">
-  <div class="hero-bg">
-    <div class="hero-gradient"></div>
-    <div class="hero-grid"></div>
+<!-- ═══════════════════════ INTRO ═══════════════════════ -->
+<section id="intro" class="intro">
+  <div class="intro-bg">
+    <div class="intro-gradient"></div>
+    <div class="intro-grid"></div>
   </div>
-  <div class="hero-content">
-    <div class="hero-badge reveal">Security Operations Engineer · Microsoft</div>
-    <h1 class="hero-title reveal">
-      <span class="hero-name">Mike Kemmerer</span>
+  <div class="intro-content">
+    <div class="intro-badge reveal">Security Operations Engineer · Microsoft</div>
+    <h1 class="intro-title reveal">
+      <span class="intro-name">Mike Kemmerer</span>
     </h1>
-    <p class="hero-subtitle reveal">Building real-world systems where software meets hardware — from church broadcasts to bitcoin mining.</p>
-    <div class="hero-cta reveal">
+    <p class="intro-subtitle reveal">Building real-world systems where software meets hardware — from church broadcasts to bitcoin mining.</p>
+    <div class="intro-cta reveal">
       <a href="#story" class="btn btn-primary">See the Work</a>
       <a href="https://github.com/MikeKemmerer" class="btn btn-ghost" target="_blank" rel="noopener">GitHub ↗</a>
     </div>
@@ -119,12 +119,8 @@
     </div>
     <div class="project-screenshots">
       <figure class="screenshot-frame reveal-right">
-        <img src="images/livestream-1.png" alt="LiveStreamScheduler dashboard showing scheduled streams" loading="lazy">
+        <img src="images/livestream-1.jpg" alt="LiveStreamScheduler dashboard showing scheduled streams" loading="lazy">
         <figcaption>Scheduling dashboard with stream status</figcaption>
-      </figure>
-      <figure class="screenshot-frame reveal-right">
-        <img src="images/livestream-2.png" alt="Stream matching results view" loading="lazy">
-        <figcaption>Automated stream-to-calendar matching</figcaption>
       </figure>
     </div>
   </div>
@@ -161,15 +157,11 @@
     </div>
     <div class="project-screenshots">
       <figure class="screenshot-frame reveal-left">
-        <img src="images/cameras-1.png" alt="Multi-camera dashboard overview" loading="lazy">
-        <figcaption>Multi-camera control dashboard</figcaption>
-      </figure>
-      <figure class="screenshot-frame reveal-left">
-        <img src="images/cameras-2.png" alt="Single camera PTZ control with presets" loading="lazy">
+        <img src="images/cameras-1.png" alt="Single camera PTZ control with presets" loading="lazy">
         <figcaption>PTZ presets with thumbnail grid</figcaption>
       </figure>
       <figure class="screenshot-frame reveal-left">
-        <img src="images/cameras-3.png" alt="Sequence running with progress pips" loading="lazy">
+        <img src="images/cameras-2.png" alt="Sequence running with progress pips" loading="lazy">
         <figcaption>Automated camera sequence in progress</figcaption>
       </figure>
     </div>
@@ -185,15 +177,18 @@
       <p class="project-tagline reveal">Keeping the community informed, beautifully.</p>
       <p class="project-desc reveal">
         A full-screen calendar display designed to run on lobby screens and kiosks.
-        Pulls events from Google Calendar, renders them with rotating slide animations,
-        and supports multiple color themes to match liturgical seasons — from Lenten purple
-        to Paschal gold.
+        Pulls events from Google Calendar and renders them as auto-rotating slides,
+        with flyers and event images interspersed from local folders, Google Drive,
+        or Google Photos — so parishioners see both what's coming up and the artwork
+        promoting it. Five color themes match liturgical seasons, from Lenten purple
+        to Paschal gold, and the whole thing is tuned to run on a Raspberry Pi Zero 2W.
       </p>
       <ul class="project-features">
-        <li class="reveal">Google Calendar API integration with intelligent caching</li>
-        <li class="reveal">Six color themes with CSS custom properties</li>
-        <li class="reveal">Self-hosted fonts for offline-capable operation</li>
-        <li class="reveal">Auto-rotating event slides with smooth transitions</li>
+        <li class="reveal">Google Calendar API integration with multi-calendar support and caching</li>
+        <li class="reveal">Image slides interspersed between events — sourced from local files, Google Drive, or Google Photos</li>
+        <li class="reveal">Five liturgical color themes with WCAG AA contrast compliance</li>
+        <li class="reveal">Automatic WebP conversion and responsive image optimization</li>
+        <li class="reveal">Optimized for Raspberry Pi Zero 2W with offline-capable cached operation</li>
       </ul>
       <div class="project-tech reveal">
         <span class="tech-tag">Python</span>
@@ -315,11 +310,11 @@
         When Seattle winters get cold, most people turn up the thermostat. This project
         supplements gas heating with bitcoin mining rigs — the waste heat warms the house
         while the miners earn cryptocurrency. MinerManager is the dashboard that keeps
-        it all under control: real-time hashrate monitoring, temperature tracking, and
+        it all under control: real-time hashrate monitoring and
         remote management via SSH key-based authentication.
       </p>
       <ul class="project-features">
-        <li class="reveal">Real-time hashrate and temperature monitoring via AJAX polling</li>
+        <li class="reveal">Real-time hashrate monitoring via AJAX polling</li>
         <li class="reveal">SSH key-based authentication for secure remote miner access</li>
         <li class="reveal">Dark-themed dashboard with card-based miner layout</li>
         <li class="reveal">Consistent number formatting across dashboard and API</li>
@@ -336,10 +331,6 @@
       <figure class="screenshot-frame reveal-left">
         <img src="images/mining-1.png" alt="MinerManager dashboard showing miner stats" loading="lazy">
         <figcaption>Miner dashboard with real-time stats</figcaption>
-      </figure>
-      <figure class="screenshot-frame reveal-left">
-        <img src="images/mining-2.png" alt="Mining rig physical setup" loading="lazy">
-        <figcaption>The heat source that pays for itself</figcaption>
       </figure>
     </div>
   </div>

@@ -93,17 +93,17 @@
     });
   });
 
-  /* ── PARALLAX ON HERO ── */
-  var heroContent = document.querySelector('.hero-content');
+  /* ── PARALLAX ON INTRO ── */
+  var introContent = document.querySelector('.intro-content');
 
   function updateParallax() {
-    if (prefersReducedMotion || !heroContent) return;
+    if (prefersReducedMotion || !introContent) return;
     var scroll = window.scrollY;
     var vh = window.innerHeight;
     if (scroll < vh) {
       var factor = scroll / vh;
-      heroContent.style.transform = 'translateY(' + (scroll * 0.3) + 'px)';
-      heroContent.style.opacity = 1 - factor * 0.8;
+      introContent.style.transform = 'translateY(' + (scroll * 0.3) + 'px)';
+      introContent.style.opacity = 1 - factor * 0.8;
     }
   }
 
