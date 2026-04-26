@@ -482,8 +482,7 @@ a { color: inherit; text-decoration: none; }
 
 .screenshot-frame img {
   width: 100%;
-  aspect-ratio: 16 / 10;
-  object-fit: cover;
+  height: auto;
   display: block;
   /* Placeholder shown when image hasn't loaded or 404s */
   background:
