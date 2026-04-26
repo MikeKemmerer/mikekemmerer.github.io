@@ -38,6 +38,7 @@
     navToggle.addEventListener('click', function () {
       navLinks.classList.toggle('open');
       navToggle.classList.toggle('active');
+      navToggle.setAttribute('aria-expanded', navLinks.classList.contains('open').toString());
     });
 
     // Close mobile nav when a link is clicked
@@ -45,12 +46,13 @@
       link.addEventListener('click', function () {
         navLinks.classList.remove('open');
         navToggle.classList.remove('active');
+        navToggle.setAttribute('aria-expanded', 'false');
       });
     });
   }
 
   /* ── INTERSECTION OBSERVER — Scroll Reveals ── */
-  const revealSelectors = '.reveal, .reveal-left, .reveal-right, .reveal-scale';
+  const revealSelectors = '.reveal, .reveal-left, .reveal-right';
 
   const observerOptions = {
     root: null,
