@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mike Kemmerer — Engineering Portfolio</title>
-  <meta name="description" content="Software engineering portfolio: church AV automation, PTZ camera control, live stream scheduling, and more.">
+  <meta name="description" content="Side-project portfolio: church AV automation, PTZ camera control, live stream scheduling, and more.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://mikekemmerer.github.io/">
   <meta property="og:title" content="Mike Kemmerer — Engineering Portfolio">
-  <meta property="og:description" content="Software engineering portfolio: church AV automation, PTZ camera control, live stream scheduling, and more.">
+  <meta property="og:description" content="Side-project portfolio: church AV automation, PTZ camera control, live stream scheduling, and more.">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Mike Kemmerer — Engineering Portfolio">
-  <meta name="twitter:description" content="Software engineering portfolio: church AV automation, PTZ camera control, live stream scheduling, and more.">
+  <meta name="twitter:description" content="Side-project portfolio: church AV automation, PTZ camera control, live stream scheduling, and more.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
@@ -49,7 +49,7 @@
     <div class="hero-grid"></div>
   </div>
   <div class="hero-content">
-    <div class="hero-badge reveal">Software Engineer · Microsoft</div>
+    <div class="hero-badge reveal">Security Operations Engineer · Microsoft</div>
     <h1 class="hero-title reveal">
       <span class="hero-name">Mike Kemmerer</span>
     </h1>
@@ -70,13 +70,14 @@
     <div class="story-text">
       <p class="story-lead reveal">
         When Saint Demetrios Greek Orthodox Church in Seattle needed to bring
-        its ancient liturgy to modern screens, they didn't hire an AV company.
+        the Divine Liturgy to parishioners who couldn't be there in person,
+        they didn't hire an AV company.
       </p>
       <p class="story-body reveal">
         They had a parishioner who happened to be a software engineer — one who saw
         every challenge as an architecture problem waiting to be solved. What started
-        as "can we livestream Sunday service?" became a full-stack church AV platform:
-        automated scheduling, robotic cameras, self-healing kiosks, and centralized
+        as "can we livestream the Liturgy?" became a full-stack parish AV platform:
+        automated scheduling, robotic cameras, lobby displays, and centralized
         monitoring — all built from scratch, one commit at a time.
       </p>
       <p class="story-body story-cta-text reveal">
@@ -94,13 +95,17 @@
       <h2 class="project-title reveal">LiveStream<wbr>Scheduler</h2>
       <p class="project-tagline reveal">It starts with knowing when to go live.</p>
       <p class="project-desc reveal">
-        An automated scheduling engine that bridges the church calendar with YouTube
-        and Facebook Live. It indexes upcoming streams, matches them to calendar events
-        by start-time proximity, and presents a web dashboard for one-click broadcast management.
+        A semi-automated scheduling tool that bridges the parish calendar with YouTube
+        and Facebook Live. It pulls upcoming services from Google Calendar, matches them
+        to scheduled broadcasts by start-time proximity, and presents everything in a
+        single dashboard — no more hunting through the calendar to find when the next
+        Liturgy or Vespers is happening. After a service is recorded, AI-powered workflows
+        generate sermon titles, descriptions, and YouTube Shorts — guided by custom skill
+        files with extensive Orthodox theology and terminology rules so the output is
+        always reverent and tradition-accurate.
       </p>
       <ul class="project-features">
         <li class="reveal">Calendar-aware stream matching with n-gram similarity fallback</li>
-        <li class="reveal">YouTube &amp; Facebook Live API integration</li>
         <li class="reveal">Web dashboard with scheduled, recorded, &amp; unscheduled views</li>
         <li class="reveal">AI-assisted sermon metadata &amp; Shorts extraction workflows</li>
       </ul>
@@ -219,14 +224,15 @@
       <h2 class="project-title reveal">VideoKiosk2</h2>
       <p class="project-tagline reveal">A display that never sleeps.</p>
       <p class="project-desc reveal">
-        A Raspberry Pi kiosk system that streams live video with automatic failover.
-        VLC handles the primary stream with freeze detection and CPU monitoring;
-        if it fails, Midori takes over with a browser-based fallback. CEC integration
-        controls the TV power state, and a scheduler polls the calendar API for
-        automated restarts.
+        A Raspberry Pi kiosk system that powers the TVs around the parish — in
+        the nursery, outside the nave, anywhere parishioners gather. During services,
+        VLC streams the live broadcast; when the Liturgy ends, the display
+        automatically transitions to the calendar of upcoming events, making the
+        most of screens that are already on. CEC integration controls TV power,
+        and a scheduler polls the calendar API for automated restarts.
       </p>
       <ul class="project-features">
-        <li class="reveal">Self-healing VLC → Midori failover chain</li>
+        <li class="reveal">Automatic livestream → calendar transition between services</li>
         <li class="reveal">HDMI-CEC TV power control via cec-utils</li>
         <li class="reveal">Calendar-driven scheduled restart system</li>
         <li class="reveal">One-command installer generates all runtime artifacts</li>
@@ -276,9 +282,6 @@
         <span class="tech-tag">mTLS</span>
         <span class="tech-tag">Apache</span>
         <span class="tech-tag">jq</span>
-      </div>
-      <div class="project-private reveal">
-        <span class="private-badge">🔒 Private Repository</span>
       </div>
     </div>
     <div class="project-screenshots">
@@ -348,7 +351,7 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <h3>Mike Kemmerer</h3>
-        <p>Software Engineer at Microsoft.<br>Building things that matter, one commit at a time.</p>
+        <p>Security Operations Engineer at Microsoft.<br>Building things that matter, one commit at a time.</p>
       </div>
       <div class="footer-links">
         <h4>Links</h4>
