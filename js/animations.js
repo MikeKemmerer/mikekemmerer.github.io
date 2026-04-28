@@ -52,7 +52,7 @@
   }
 
   /* ── INTERSECTION OBSERVER — Scroll Reveals ── */
-  const revealSelectors = '.reveal, .reveal-left, .reveal-right';
+  const revealSelectors = '.reveal, .reveal-left, .reveal-right, .reveal-zoom';
 
   const observerOptions = {
     root: null,
@@ -64,7 +64,8 @@
     entries.forEach(function (entry) {
       if (entry.isIntersecting) {
         entry.target.classList.add('active');
-        revealObserver.unobserve(entry.target);
+      } else {
+        entry.target.classList.remove('active');
       }
     });
   }, observerOptions);
