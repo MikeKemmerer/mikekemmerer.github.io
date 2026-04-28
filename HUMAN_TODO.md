@@ -11,8 +11,8 @@ The site will pick them up automatically — no code changes needed.
 - [x] `images/livestream-1.jpg` — Dashboard view showing list of scheduled/upcoming streams
 
 ### Camera Control
-- [ ] `images/cameras-1.png` — Single camera PTZ control page with preset thumbnail grid
-- [ ] `images/cameras-2.png` — Sequence running: showing progress pips and active preset
+- [x] `images/cameras-1.png` — Single camera PTZ control page with preset thumbnail grid
+- [x] `images/cameras-2.png` — Sequence running: showing progress pips and active preset
 
 ### Church Calendar
 - [x] `images/calendar-1.png` — Calendar display showing event slides (default theme)
@@ -28,4 +28,4 @@ The site will pick them up automatically — no code changes needed.
 ## Home Project
 
 ### MinerManager
-- [ ] `images/mining-1.png` — Dashboard with miner cards showing hashrate, temps, status
+- [x] `images/mining-1.png` — Dashboard with miner cards showing hashrate, temps, status
