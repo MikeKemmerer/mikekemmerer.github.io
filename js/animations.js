@@ -52,7 +52,7 @@
   }
 
   /* ── INTERSECTION OBSERVER — Scroll Reveals ── */
-  const revealSelectors = '.reveal, .reveal-left, .reveal-right';
+  const revealSelectors = '.reveal, .reveal-left, .reveal-right, .reveal-zoom';
 
   const observerOptions = {
     root: null,
