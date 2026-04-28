@@ -467,6 +467,8 @@ a { color: inherit; text-decoration: none; }
 
 .screenshot-frame {
   position: relative;
+  width: fit-content;
+  max-width: 100%;
   border-radius: var(--radius-lg);
   overflow: hidden;
   background: linear-gradient(135deg, var(--surface) 0%, var(--surface-2) 100%);
