@@ -4,19 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mike Kemmerer — Engineering Portfolio</title>
-  <meta name="description" content="Side-project portfolio: church AV automation, PTZ camera control, live stream scheduling, and more.">
+  <meta name="description" content="Side-project portfolio: church AV automation, cloud streaming, sermon pipelines, PTZ camera control, and always-on streaming systems.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://mikekemmerer.github.io/">
   <meta property="og:title" content="Mike Kemmerer — Engineering Portfolio">
-  <meta property="og:description" content="Side-project portfolio: church AV automation, PTZ camera control, live stream scheduling, and more.">
+  <meta property="og:description" content="Side-project portfolio: church AV automation, cloud streaming, sermon pipelines, PTZ camera control, and always-on streaming systems.">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Mike Kemmerer — Engineering Portfolio">
-  <meta name="twitter:description" content="Side-project portfolio: church AV automation, PTZ camera control, live stream scheduling, and more.">
+  <meta name="twitter:description" content="Side-project portfolio: church AV automation, cloud streaming, sermon pipelines, PTZ camera control, and always-on streaming systems.">
+  <meta name="theme-color" content="#07090c">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>⚡</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%2307090c'/><text x='4' y='23' font-size='18' font-family='monospace' font-weight='700' fill='%23e8b931'>&gt;_</text></svg>">
+  <noscript><style>.reveal,.reveal-left,.reveal-right,.reveal-zoom{opacity:1;transform:none}</style></noscript>
 </head>
 <body>
 
@@ -24,17 +26,18 @@
 <div class="scroll-progress" id="scrollProgress"></div>
 
 <!-- ═══════════════════════ NAVIGATION ═══════════════════════ -->
-<nav class="nav" id="nav">
+<nav class="nav" id="nav" aria-label="Primary">
   <div class="nav-inner">
-    <a href="#intro" class="nav-logo">MK</a>
+    <a href="#intro" class="nav-logo"><span class="nav-logo-user">mk</span><span class="nav-logo-sep">@</span>portfolio<span class="nav-logo-prompt">:~$</span></a>
     <div class="nav-links" id="navLinks">
-      <a href="#story">The Story</a>
-      <a href="#livestream">Streaming</a>
-      <a href="#cameras">Cameras</a>
-      <a href="#calendar">Calendar</a>
-      <a href="#kiosk">Kiosk</a>
-      <a href="#monitoring">Monitoring</a>
-      <a href="#mining">Mining</a>
+      <a href="#livestream">streaming</a>
+      <a href="#azure">cloud</a>
+      <a href="#sermons">sermons</a>
+      <a href="#cameras">cameras</a>
+      <a href="#calendar">calendar</a>
+      <a href="#kiosk">kiosk</a>
+      <a href="#monitoring">monitoring</a>
+      <a href="#home">home</a>
     </div>
     <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">
       <span></span><span></span><span></span>
@@ -42,37 +45,45 @@
   </div>
 </nav>
 
+<main>
+
 <!-- ═══════════════════════ INTRO ═══════════════════════ -->
-<section id="intro" class="intro">
-  <div class="intro-bg">
-    <div class="intro-gradient"></div>
-    <div class="intro-grid"></div>
-    <div class="intro-orbs" aria-hidden="true">
-      <div class="orb orb-1"></div>
-      <div class="orb orb-2"></div>
-      <div class="orb orb-3"></div>
+<section id="intro" class="intro" data-path="~">
+  <div class="intro-content container">
+    <div class="term" role="img" aria-label="Terminal introducing Mike Kemmerer, Security Operations Engineer at Microsoft">
+      <div class="win-bar" aria-hidden="true"><i></i><i></i><i></i><span>mike@portfolio: ~</span></div>
+      <div class="term-body">
+        <div class="t-line" style="--d:.3s"><span class="t-prompt">$</span> <span class="typed" style="--n:6;--d:.3s">whoami</span></div>
+        <div class="t-out" style="--d:.8s">
+          <h1 class="intro-name">Mike Kemmerer</h1>
+          <span class="intro-role">Security Operations Engineer · Microsoft</span>
+        </div>
+
+        <div class="t-line" style="--d:1.4s"><span class="t-prompt">$</span> <span class="typed" style="--n:11;--d:1.4s">ls ~/projects</span></div>
+        <div class="t-out" style="--d:2.1s"><span class="t-dir">church-av/</span>  <span class="t-dir">streaming/</span>  <span class="t-dir">home/</span></div>
+
+        <div class="t-line" style="--d:2.6s"><span class="t-prompt">$</span> <span class="typed" style="--n:14;--d:2.6s">cat about.txt</span></div>
+        <div class="t-out" style="--d:3.4s">
+          <p class="intro-subtitle">Building real-world systems where software meets hardware — from church broadcasts to bitcoin mining.</p>
+        </div>
+
+        <div class="t-out intro-cta" style="--d:3.9s">
+          <a href="#story" class="btn btn-primary">see the work</a>
+          <a href="https://github.com/MikeKemmerer" class="btn btn-ghost" target="_blank" rel="noopener">github ↗</a>
+        </div>
+
+        <div class="t-line" style="--d:4.3s"><span class="t-prompt">$</span> <span class="cursor" aria-hidden="true"></span></div>
+      </div>
     </div>
   </div>
-  <div class="intro-content">
-    <div class="intro-badge reveal">Security Operations Engineer · Microsoft</div>
-    <h1 class="intro-title reveal">
-      <span class="intro-name">Mike Kemmerer</span>
-    </h1>
-    <p class="intro-subtitle reveal">Building real-world systems where software meets hardware — from church broadcasts to bitcoin mining.</p>
-    <div class="intro-cta reveal">
-      <a href="#story" class="btn btn-primary">See the Work</a>
-      <a href="https://github.com/MikeKemmerer" class="btn btn-ghost" target="_blank" rel="noopener">GitHub ↗</a>
-    </div>
-  </div>
-  <div class="scroll-indicator">
-    <div class="scroll-arrow"></div>
-  </div>
+  <div class="scroll-indicator" aria-hidden="true"><div class="scroll-arrow"></div></div>
 </section>
 
 <!-- ═══════════════════════ THE STORY ═══════════════════════ -->
-<section id="story" class="story-section">
+<section id="story" class="story-section" data-path="~/story.md">
   <div class="container">
     <div class="story-text">
+      <div class="story-cmd reveal"><span class="t-prompt">$</span> cat story.md</div>
       <p class="story-lead reveal">
         When Saint Demetrios Greek Orthodox Church in Seattle needed to bring
         the Divine Liturgy to parishioners who couldn't be there in person,
@@ -82,8 +93,8 @@
         They had a parishioner who happened to be a software engineer — one who saw
         every challenge as an architecture problem waiting to be solved. What started
         as "can we livestream the Liturgy?" became a full-stack parish AV platform:
-        automated scheduling, robotic cameras, lobby displays, and centralized
-        monitoring — all built from scratch, one commit at a time.
+        automated scheduling, cloud streaming, sermon post-production, robotic cameras,
+        lobby displays, and centralized monitoring — all built from scratch, one commit at a time.
       </p>
       <p class="story-body story-cta-text reveal">
         This is that story.
@@ -93,259 +104,561 @@
 </section>
 
 <!-- ═══════════════════════ CHAPTER 1: LIVESTREAMSCHEDULER ═══════════════════════ -->
-<section id="livestream" class="project-section">
-  <div class="chapter-label reveal"><span>Chapter 1</span></div>
-  <div class="container project-grid">
-    <div class="project-info">
-      <h2 class="project-title reveal">LiveStream<wbr>Scheduler</h2>
-      <p class="project-tagline reveal">It starts with knowing when to go live.</p>
-      <p class="project-desc reveal">
-        A semi-automated scheduling tool that bridges the parish calendar with YouTube
-        and Facebook Live. It pulls upcoming services from Google Calendar, matches them
-        to scheduled broadcasts by start-time proximity, and presents everything in a
-        single dashboard — no more hunting through the calendar to find when the next
-        Liturgy or Vespers is happening. After a service is recorded, AI-powered workflows
-        generate sermon titles, descriptions, and YouTube Shorts — guided by custom skill
-        files with extensive Orthodox theology and terminology rules so the output is
-        always reverent and tradition-accurate.
-      </p>
-      <ul class="project-features">
-        <li class="reveal">Calendar-aware stream matching with n-gram similarity fallback</li>
-        <li class="reveal">Web dashboard with scheduled, recorded, &amp; unscheduled views</li>
-        <li class="reveal">AI-assisted sermon metadata &amp; Shorts extraction workflows</li>
-      </ul>
-      <div class="project-tech reveal">
-        <span class="tech-tag">Python</span>
-        <span class="tech-tag">YouTube API</span>
-        <span class="tech-tag">yt-dlp</span>
-        <span class="tech-tag">HTTP Server</span>
-      </div>
-      <a href="https://github.com/MikeKemmerer/LiveStreamScheduler" class="project-link reveal" target="_blank" rel="noopener">View on GitHub →</a>
+<section id="livestream" class="project-section" data-path="~/church-av/livestream-scheduler">
+  <div class="container">
+    <div class="chapter-bar reveal">
+      <span class="ch-path"><b>mike@church-av</b>:<em>~/livestream-scheduler</em>$</span>
+      <span class="ch-num">chapter 01</span>
     </div>
-    <div class="project-screenshots">
-      <figure class="screenshot-frame reveal-right">
-        <img src="images/livestream-1.jpg" alt="LiveStreamScheduler dashboard showing scheduled streams" loading="lazy">
-        <figcaption>Scheduling dashboard with stream status</figcaption>
-      </figure>
+    <div class="project-grid">
+      <div class="project-info">
+        <h2 class="project-title reveal"><span class="hash">#</span> LiveStream<wbr>Scheduler</h2>
+        <p class="project-tagline reveal">It starts with knowing when to go live.</p>
+        <p class="project-desc reveal">
+          A semi-automated scheduling tool that bridges the parish calendar with YouTube
+          and Facebook Live. It pulls upcoming services from Google Calendar, matches them
+          to scheduled broadcasts by start-time proximity, and presents everything in a
+          single Mission Control dashboard — no more hunting through the calendar to find
+          when the next Liturgy or Vespers is happening.
+        </p>
+        <ul class="project-features">
+          <li class="reveal">Calendar-aware stream matching by start time, with n-gram similarity fallback</li>
+          <li class="reveal">Live-updating web dashboard with scheduled, recorded, &amp; unscheduled views</li>
+          <li class="reveal">Facebook crossposting and calendar-driven service restart scheduling</li>
+          <li class="reveal">Deliberately narrow scope: scheduling and coverage analysis, nothing else</li>
+        </ul>
+        <div class="project-tech reveal">
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">YouTube API</span>
+          <span class="tech-tag">Google Calendar</span>
+          <span class="tech-tag">SSE</span>
+          <span class="tech-tag">yt-dlp</span>
+        </div>
+        <a href="https://github.com/MikeKemmerer/LiveStreamScheduler" class="project-link reveal" target="_blank" rel="noopener">view on github <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="project-screenshots">
+        <figure class="screenshot-frame reveal-right">
+          <div class="win-bar" aria-hidden="true"><i></i><i></i><i></i><span>mission-control</span></div>
+          <img src="images/livestream-1.jpeg" alt="LiveStreamScheduler dashboard showing scheduled streams" loading="lazy">
+          <figcaption>Scheduling dashboard with stream status</figcaption>
+        </figure>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════ CHAPTER 2: CAMERAS ═══════════════════════ -->
-<section id="cameras" class="project-section alt">
-  <div class="chapter-label reveal"><span>Chapter 2</span></div>
-  <div class="container project-grid reverse">
-    <div class="project-info">
-      <h2 class="project-title reveal">Camera Control</h2>
-      <p class="project-tagline reveal">Every broadcast needs a camera operator. Or does it?</p>
-      <p class="project-desc reveal">
-        A browser-based PTZ camera control console for Panasonic AW-series and ONVIF cameras.
-        Multi-camera dashboard with one-click preset recall, automated sequences with boomerang
-        and loop modes, live MJPEG/HLS preview, and a captures gallery — all from any device
-        with a browser.
-      </p>
-      <ul class="project-features">
-        <li class="reveal">Multi-camera dashboard with per-camera iframe controllers</li>
-        <li class="reveal">Canvas-based virtual joystick for real-time PTZ</li>
-        <li class="reveal">Automated sequences: auto, semi-auto, and boomerang modes</li>
-        <li class="reveal">ONVIF support via custom PHP SOAP proxy with WS-Security</li>
-        <li class="reveal">Captures gallery with multi-select zip download</li>
-      </ul>
-      <div class="project-tech reveal">
-        <span class="tech-tag">JavaScript</span>
-        <span class="tech-tag">PHP</span>
-        <span class="tech-tag">ONVIF/SOAP</span>
-        <span class="tech-tag">Apache</span>
-        <span class="tech-tag">Canvas API</span>
-      </div>
-      <a href="https://github.com/MikeKemmerer/cameras" class="project-link reveal" target="_blank" rel="noopener">View on GitHub →</a>
+<!-- ═══════════════════════ CHAPTER 2: YT-AZURE-STREAMER ═══════════════════════ -->
+<section id="azure" class="project-section alt" data-path="~/church-av/yt-azure-streamer">
+  <div class="container">
+    <div class="chapter-bar reveal">
+      <span class="ch-path"><b>mike@church-av</b>:<em>~/yt-azure-streamer</em>$</span>
+      <span class="ch-num">chapter 02</span>
     </div>
-    <div class="project-screenshots">
-      <figure class="screenshot-frame reveal-left">
-        <img src="images/cameras-1.png" alt="Single camera PTZ control with presets" loading="lazy">
-        <figcaption>PTZ presets with thumbnail grid</figcaption>
-      </figure>
-      <figure class="screenshot-frame reveal-left">
-        <img src="images/cameras-2.png" alt="Mobile view of camera sequence running with progress pips and countdown" loading="lazy">
-        <figcaption>Sequence running on mobile with live countdown</figcaption>
-      </figure>
+    <div class="project-grid reverse">
+      <div class="project-info">
+        <h2 class="project-title reveal"><span class="hash">#</span> YT Azure <wbr>Streamer</h2>
+        <p class="project-tagline reveal">Infrastructure that sleeps when the stream does.</p>
+        <p class="project-desc reveal">
+          A parameterized Azure deployment that provisions a streaming VM with a single
+          ARM template command. The VM plays a recorded service from Blob Storage to
+          YouTube Live with ffmpeg, wakes up two minutes before each scheduled stream, and
+          deallocates afterward so nothing runs — or bills for compute — while idle.
+        </p>
+        <ul class="project-features">
+          <li class="reveal">One-command deploy: ARM template plus interactive <code>deploy.sh</code> / <code>deploy.ps1</code> with name, region, and SKU pre-flight checks</li>
+          <li class="reveal">No secrets on disk — stream key and credentials live in Key Vault, read via managed identity</li>
+          <li class="reveal">Azure Automation starts and stops the VM on a weekly schedule; role assignments are wired in the template</li>
+          <li class="reveal">Recordings mounted from Blob Storage with blobfuse2; ffmpeg settings tuned for stable YouTube ingest</li>
+          <li class="reveal">Password-protected web UI for playlists, schedules, logs, and monitoring, served by Caddy with automatic TLS</li>
+        </ul>
+        <div class="project-tech reveal">
+          <span class="tech-tag">Azure ARM</span>
+          <span class="tech-tag">Key Vault</span>
+          <span class="tech-tag">Automation</span>
+          <span class="tech-tag">Bash</span>
+          <span class="tech-tag">PowerShell</span>
+          <span class="tech-tag">ffmpeg</span>
+          <span class="tech-tag">Caddy</span>
+        </div>
+        <a href="https://github.com/MikeKemmerer/yt-azure-streamer" class="project-link reveal" target="_blank" rel="noopener">view on github <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="project-screenshots">
+        <figure class="screenshot-frame arch reveal-left">
+          <div class="win-bar" aria-hidden="true"><i></i><i></i><i></i><span>architecture.txt</span></div>
+          <pre class="arch-diagram" role="img" aria-label="Diagram: weekly schedule triggers Azure Automation, which starts a VM that reads recordings from Blob Storage and a stream key from Key Vault, then streams to YouTube Live.">
+ weekly schedule
+        │
+        ▼
+ Automation Account
+        │ start T-2 min · deallocate after
+        ▼
+ ┌──────────────────────────────┐
+ │ Ubuntu VM         (ffmpeg)   │──▶ YouTube Live
+ │  ▲ blobfuse2      ▲ identity │
+ └──┼────────────────┼──────────┘
+    │                │
+ Blob Storage    Key Vault
+ (recordings)    (stream key)</pre>
+          <figcaption>One template wires the VM, storage, vault, and schedule together</figcaption>
+        </figure>
+        <figure class="screenshot-frame reveal-left">
+          <div class="win-bar" aria-hidden="true"><i></i><i></i><i></i><span>web-ui</span></div>
+          <img src="images/azure-1.jpeg" alt="Streamer web UI showing the now-playing video, upcoming queue, playback controls, and service health" loading="lazy">
+          <figcaption>Web UI: now playing, queue controls, and service health</figcaption>
+        </figure>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════ CHAPTER 3: CHURCH-CALENDAR ═══════════════════════ -->
-<section id="calendar" class="project-section">
-  <div class="chapter-label reveal"><span>Chapter 3</span></div>
-  <div class="container project-grid">
-    <div class="project-info">
-      <h2 class="project-title reveal">Church Calendar</h2>
-      <p class="project-tagline reveal">Keeping the community informed, beautifully.</p>
-      <p class="project-desc reveal">
-        A full-screen calendar display designed to run on lobby screens and kiosks.
-        Pulls events from Google Calendar and renders them as auto-rotating slides,
-        with flyers and event images interspersed from local folders, Google Drive,
-        or Google Photos — so parishioners see both what's coming up and the artwork
-        promoting it. Five color themes match liturgical seasons, from Lenten purple
-        to Paschal gold, and the whole thing is tuned to run on a Raspberry Pi Zero 2W.
-      </p>
-      <ul class="project-features">
-        <li class="reveal">Google Calendar API integration with multi-calendar support and caching</li>
-        <li class="reveal">Image slides interspersed between events — sourced from local files, Google Drive, or Google Photos</li>
-        <li class="reveal">Five liturgical color themes with WCAG AA contrast compliance</li>
-        <li class="reveal">Automatic WebP conversion and responsive image optimization</li>
-        <li class="reveal">Optimized for Raspberry Pi Zero 2W with offline-capable cached operation</li>
-      </ul>
-      <div class="project-tech reveal">
-        <span class="tech-tag">Python</span>
-        <span class="tech-tag">Flask</span>
-        <span class="tech-tag">HTML/CSS</span>
-        <span class="tech-tag">Google Calendar API</span>
-      </div>
-      <a href="https://github.com/MikeKemmerer/church-calendar" class="project-link reveal" target="_blank" rel="noopener">View on GitHub →</a>
+<!-- ═══════════════════════ CHAPTER 3: SERMON-PIPELINE ═══════════════════════ -->
+<section id="sermons" class="project-section" data-path="~/church-av/sermon-pipeline">
+  <div class="container">
+    <div class="chapter-bar reveal">
+      <span class="ch-path"><b>mike@church-av</b>:<em>~/sermon-pipeline</em>$</span>
+      <span class="ch-num">chapter 03</span>
     </div>
-    <div class="project-screenshots">
-      <figure class="screenshot-frame reveal-right">
-        <img src="images/calendar-1.png" alt="Church calendar display with events" loading="lazy">
-        <figcaption>Calendar display with event slides</figcaption>
-      </figure>
-      <figure class="screenshot-frame reveal-right">
-        <img src="images/calendar-2.png" alt="Calendar with different color theme" loading="lazy">
-        <figcaption>Liturgical color theme in action</figcaption>
-      </figure>
+    <div class="project-grid">
+      <div class="project-info">
+        <h2 class="project-title reveal"><span class="hash">#</span> Sermon <wbr>Pipeline</h2>
+        <p class="project-tagline reveal">After the Liturgy, the work is just beginning.</p>
+        <p class="project-desc reveal">
+          A post-production pipeline for church broadcast recordings. It finds the
+          sermon inside a multi-hour live stream, cuts it out, writes a title and
+          description, and prepares YouTube Shorts — built as an MCP server driven by an
+          AI agent, with skill files that encode extensive Orthodox theology and
+          terminology rules so the output is always reverent and tradition-accurate.
+        </p>
+        <ul class="project-features">
+          <li class="reveal">MCP server exposing deterministic tools for boundary detection, segment download, Shorts extraction, and validation</li>
+          <li class="reveal">Sermon boundaries from the transcript, with an audio silence-gap fallback and side-by-side redetection</li>
+          <li class="reveal">Per-sermon directory packages instead of monolithic JSON, plus append-only indexes that can be regenerated</li>
+          <li class="reveal">Layered by how deterministic the work is: scripts, then tools, then skills, then the agent — which keeps runs cheap and predictable</li>
+          <li class="reveal">Fetches the weekly Sunday School lesson with headless Chromium and works it into the liturgy description</li>
+        </ul>
+        <div class="project-tech reveal">
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">MCP</span>
+          <span class="tech-tag">Playwright</span>
+          <span class="tech-tag">yt-dlp</span>
+          <span class="tech-tag">FFmpeg</span>
+          <span class="tech-tag">VS Code Agents</span>
+        </div>
+        <p class="project-note reveal"><span class="repo-badge">repo: private</span> Described here, but not open source.</p>
+      </div>
+      <div class="project-screenshots">
+        <figure class="screenshot-frame arch reveal-right">
+          <div class="win-bar" aria-hidden="true"><i></i><i></i><i></i><span>pipeline.txt</span></div>
+          <pre class="arch-diagram" role="img" aria-label="Diagram: a broadcast recording is transcribed and its sermon boundaries detected, producing a per-sermon package, from which segments and Shorts are extracted.">
+ broadcast recording
+        │ prepare_date · get_transcript
+        ▼
+ ┌───────────────────────────────┐
+ │ detect_boundaries             │
+ │ transcript + silence-gap      │
+ └───────────────┬───────────────┘
+                 ▼
+ data/sermons/DATE_VIDEOID/
+   ├─ metadata.json
+   ├─ transcript.txt
+   └─ boundaries.json
+                 │
+   download_segment ─▶ find_short_candidates
+                              └─▶ extract_short</pre>
+          <figcaption>From raw broadcast to a publishable sermon package</figcaption>
+        </figure>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════ CHAPTER 4: VIDEOKIOSK2 ═══════════════════════ -->
-<section id="kiosk" class="project-section alt">
-  <div class="chapter-label reveal"><span>Chapter 4</span></div>
-  <div class="container project-grid reverse">
-    <div class="project-info">
-      <h2 class="project-title reveal">VideoKiosk2</h2>
-      <p class="project-tagline reveal">A display that never sleeps.</p>
-      <p class="project-desc reveal">
-        A Raspberry Pi kiosk system that powers the TVs around the parish — in
-        the nursery, outside the nave, anywhere parishioners gather. During services,
-        VLC streams the live broadcast; when the Liturgy ends, the display
-        automatically transitions to the calendar of upcoming events, making the
-        most of screens that are already on. CEC integration controls TV power,
-        and a scheduler polls the calendar API for automated restarts.
-      </p>
-      <ul class="project-features">
-        <li class="reveal">Automatic livestream → calendar transition between services</li>
-        <li class="reveal">HDMI-CEC TV power control via cec-utils</li>
-        <li class="reveal">Calendar-driven scheduled restart system</li>
-        <li class="reveal">One-command installer generates all runtime artifacts</li>
-      </ul>
-      <div class="project-tech reveal">
-        <span class="tech-tag">Bash</span>
-        <span class="tech-tag">systemd</span>
-        <span class="tech-tag">VLC</span>
-        <span class="tech-tag">Raspberry Pi</span>
-        <span class="tech-tag">CEC</span>
-      </div>
-      <a href="https://github.com/MikeKemmerer/videokiosk2" class="project-link reveal" target="_blank" rel="noopener">View on GitHub →</a>
+<!-- ═══════════════════════ CHAPTER 4: CAMERAS ═══════════════════════ -->
+<section id="cameras" class="project-section alt" data-path="~/church-av/cameras">
+  <div class="container">
+    <div class="chapter-bar reveal">
+      <span class="ch-path"><b>mike@church-av</b>:<em>~/cameras</em>$</span>
+      <span class="ch-num">chapter 04</span>
     </div>
-    <div class="project-screenshots">
-      <figure class="screenshot-frame reveal-left">
-        <img src="images/kiosk-1.png" alt="VideoKiosk2 running on a lobby display" loading="lazy">
-        <figcaption>Kiosk display running in the church lobby</figcaption>
-      </figure>
+    <div class="project-grid reverse">
+      <div class="project-info">
+        <h2 class="project-title reveal"><span class="hash">#</span> Camera Control</h2>
+        <p class="project-tagline reveal">Every broadcast needs a camera operator. Or does it?</p>
+        <p class="project-desc reveal">
+          A browser-based PTZ camera control console for Panasonic AW-series and ONVIF cameras.
+          Multi-camera dashboard with one-click preset recall, automated sequences with boomerang
+          and loop modes, live MJPEG/HLS preview, and a captures gallery — all from any device
+          with a browser.
+        </p>
+        <ul class="project-features">
+          <li class="reveal">Multi-camera dashboard with per-camera iframe controllers</li>
+          <li class="reveal">Canvas-based virtual joystick for real-time PTZ</li>
+          <li class="reveal">Automated sequences (auto, semi-auto, boomerang) with live countdown and per-sequence speed defaults</li>
+          <li class="reveal">Preset speed slider from X-Slow to XX-Fast, plus a full AW-HE40 CGI API reference written for the project</li>
+          <li class="reveal">ONVIF support via a custom PHP SOAP proxy with WS-Security</li>
+          <li class="reveal">Captures gallery with multi-select zip download</li>
+        </ul>
+        <div class="project-tech reveal">
+          <span class="tech-tag">JavaScript</span>
+          <span class="tech-tag">PHP</span>
+          <span class="tech-tag">ONVIF/SOAP</span>
+          <span class="tech-tag">Apache</span>
+          <span class="tech-tag">Canvas API</span>
+        </div>
+        <a href="https://github.com/MikeKemmerer/cameras" class="project-link reveal" target="_blank" rel="noopener">view on github <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="project-screenshots">
+        <figure class="screenshot-frame reveal-left">
+          <div class="win-bar" aria-hidden="true"><i></i><i></i><i></i><span>ptz-control</span></div>
+          <img src="images/cameras-1.png" alt="Single camera PTZ control with presets" loading="lazy">
+          <figcaption>PTZ presets with thumbnail grid</figcaption>
+        </figure>
+        <figure class="screenshot-frame reveal-left">
+          <div class="win-bar" aria-hidden="true"><i></i><i></i><i></i><span>sequence-run</span></div>
+          <img src="images/cameras-2.png" alt="Mobile view of camera sequence running with progress pips and countdown" loading="lazy">
+          <figcaption>Sequence running on mobile with live countdown</figcaption>
+        </figure>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════ CHAPTER 5: CHURCH-MONITORING ═══════════════════════ -->
-<section id="monitoring" class="project-section">
-  <div class="chapter-label reveal"><span>Chapter 5</span></div>
-  <div class="container project-grid">
-    <div class="project-info">
-      <h2 class="project-title reveal">Church Monitoring</h2>
-      <p class="project-tagline reveal">Because even the best systems need oversight.</p>
-      <p class="project-desc reveal">
-        A lightweight centralized monitoring system for church AV infrastructure.
-        Clients collect system metrics via cron; the server fetches on demand
-        with parallel queries and caching. The HTTPS dashboard shows device health,
-        process status, CEC TV control, and on-demand screenshot capture — all
-        secured with mutual TLS and token-based enrollment.
-      </p>
-      <ul class="project-features">
-        <li class="reveal">Pull-based architecture: server fetches from clients on demand</li>
-        <li class="reveal">Mutual TLS with token-based device enrollment</li>
-        <li class="reveal">CEC TV control: power on, standby, set active input</li>
-        <li class="reveal">Remote screenshot capture via X11 display grab</li>
-        <li class="reveal">Parallel client queries with 30-second response caching</li>
-      </ul>
-      <div class="project-tech reveal">
-        <span class="tech-tag">Bash</span>
-        <span class="tech-tag">CGI</span>
-        <span class="tech-tag">mTLS</span>
-        <span class="tech-tag">Apache</span>
-        <span class="tech-tag">jq</span>
+<!-- ═══════════════════════ CHAPTER 5: CHURCH-CALENDAR ═══════════════════════ -->
+<section id="calendar" class="project-section" data-path="~/church-av/church-calendar">
+  <div class="container">
+    <div class="chapter-bar reveal">
+      <span class="ch-path"><b>mike@church-av</b>:<em>~/church-calendar</em>$</span>
+      <span class="ch-num">chapter 05</span>
+    </div>
+    <div class="project-grid">
+      <div class="project-info">
+        <h2 class="project-title reveal"><span class="hash">#</span> Church Calendar</h2>
+        <p class="project-tagline reveal">Keeping the community informed, beautifully.</p>
+        <p class="project-desc reveal">
+          A full-screen calendar display designed to run on lobby screens and kiosks.
+          Pulls events from Google Calendar and renders them as auto-rotating slides,
+          with flyers and event images interspersed from local folders, Google Drive,
+          or Google Photos — so parishioners see both what's coming up and the artwork
+          promoting it. Liturgical color themes follow the church year, from Lenten purple
+          to Paschal gold, and the whole thing is tuned to run on a Raspberry Pi Zero 2W.
+        </p>
+        <ul class="project-features">
+          <li class="reveal">Google Calendar API integration with multi-calendar support and a 90-day-ahead event cache that downstream schedulers consume</li>
+          <li class="reveal">Image slides interspersed between events — sourced from local files, Google Drive, or Google Photos</li>
+          <li class="reveal">Five liturgical color themes plus a light theme, with WCAG AA contrast compliance</li>
+          <li class="reveal">Remote display control through URL parameters for theme, font, speed, and margins</li>
+          <li class="reveal">Idempotent installer, AppArmor profile, and ntfy alerts when something breaks</li>
+          <li class="reveal">Automatic WebP conversion and offline-capable cached operation on a Raspberry Pi Zero 2W</li>
+        </ul>
+        <div class="project-tech reveal">
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">Flask</span>
+          <span class="tech-tag">HTML/CSS</span>
+          <span class="tech-tag">Google Calendar API</span>
+          <span class="tech-tag">ntfy</span>
+        </div>
+        <a href="https://github.com/MikeKemmerer/church-calendar" class="project-link reveal" target="_blank" rel="noopener">view on github <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="project-screenshots">
+        <figure class="screenshot-frame reveal-right">
+          <div class="win-bar" aria-hidden="true"><i></i><i></i><i></i><span>calendar-default</span></div>
+          <img src="images/calendar-1.png" alt="Church calendar display with events" loading="lazy">
+          <figcaption>Calendar display with event slides</figcaption>
+        </figure>
+        <figure class="screenshot-frame reveal-right">
+          <div class="win-bar" aria-hidden="true"><i></i><i></i><i></i><span>calendar-themed</span></div>
+          <img src="images/calendar-2.png" alt="Calendar with different color theme" loading="lazy">
+          <figcaption>Liturgical color theme in action</figcaption>
+        </figure>
       </div>
     </div>
-    <div class="project-screenshots">
-      <figure class="screenshot-frame reveal-right">
-        <img src="images/monitoring-1.png" alt="Monitoring dashboard showing device status" loading="lazy">
-        <figcaption>Centralized monitoring dashboard</figcaption>
-      </figure>
-      <figure class="screenshot-frame reveal-right">
-        <img src="images/monitoring-2.png" alt="Device detail with CEC and screenshot controls" loading="lazy">
-        <figcaption>Device health &amp; CEC TV control</figcaption>
-      </figure>
+  </div>
+</section>
+
+<!-- ═══════════════════════ CHAPTER 6: VIDEOKIOSK2 ═══════════════════════ -->
+<section id="kiosk" class="project-section alt" data-path="~/church-av/videokiosk2">
+  <div class="container">
+    <div class="chapter-bar reveal">
+      <span class="ch-path"><b>mike@church-av</b>:<em>~/videokiosk2</em>$</span>
+      <span class="ch-num">chapter 06</span>
+    </div>
+    <div class="project-grid reverse">
+      <div class="project-info">
+        <h2 class="project-title reveal"><span class="hash">#</span> VideoKiosk2</h2>
+        <p class="project-tagline reveal">A display that never sleeps.</p>
+        <p class="project-desc reveal">
+          A Raspberry Pi kiosk system that powers the TVs around the parish — in
+          the nursery, outside the nave, anywhere parishioners gather. During services,
+          VLC streams the live broadcast; when the Liturgy ends, the display
+          automatically transitions to the calendar of upcoming events, making the
+          most of screens that are already on.
+        </p>
+        <ul class="project-features">
+          <li class="reveal">Automatic livestream → calendar transition, with freeze detection and failover to a browser when the stream data goes missing</li>
+          <li class="reveal">HDMI-CEC TV power control via cec-utils</li>
+          <li class="reveal">Fire TV control over Bluetooth HID — wake, sleep, and HDMI switching</li>
+          <li class="reveal">Calendar-driven restart scheduling and a standby countdown shared with the monitoring dashboard</li>
+          <li class="reveal">Runs on Raspberry Pi OS and Ubuntu, with an X11-aware AppArmor profile and ntfy alerts</li>
+          <li class="reveal">One-command installer — also reachable through the unified church-service-installer</li>
+        </ul>
+        <div class="project-tech reveal">
+          <span class="tech-tag">Bash</span>
+          <span class="tech-tag">systemd</span>
+          <span class="tech-tag">VLC</span>
+          <span class="tech-tag">Raspberry Pi</span>
+          <span class="tech-tag">CEC</span>
+          <span class="tech-tag">Bluetooth HID</span>
+        </div>
+        <a href="https://github.com/MikeKemmerer/videokiosk2" class="project-link reveal" target="_blank" rel="noopener">view on github <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="project-screenshots">
+        <figure class="screenshot-frame reveal-left">
+          <div class="win-bar" aria-hidden="true"><i></i><i></i><i></i><span>lobby-tv</span></div>
+          <img src="images/kiosk-1.png" alt="VideoKiosk2 running on a lobby display" loading="lazy">
+          <figcaption>Kiosk display running in the church lobby</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ CHAPTER 7: CHURCH-MONITORING ═══════════════════════ -->
+<section id="monitoring" class="project-section" data-path="~/church-av/church-monitoring">
+  <div class="container">
+    <div class="chapter-bar reveal">
+      <span class="ch-path"><b>mike@church-av</b>:<em>~/church-monitoring</em>$</span>
+      <span class="ch-num">chapter 07</span>
+    </div>
+    <div class="project-grid">
+      <div class="project-info">
+        <h2 class="project-title reveal"><span class="hash">#</span> Church Monitoring</h2>
+        <p class="project-tagline reveal">Because even the best systems need oversight.</p>
+        <p class="project-desc reveal">
+          A lightweight centralized monitoring and control system for church AV infrastructure.
+          Clients collect system metrics via cron; the server fetches on demand
+          with parallel queries and caching. The HTTPS dashboard shows device health and
+          lets an operator act on it — restart a service, switch a TV's input, or
+          start a standby timer — all secured with mutual TLS and token-based enrollment.
+        </p>
+        <ul class="project-features">
+          <li class="reveal">Pull-based architecture: server fetches from clients on demand, in parallel, with 30-second response caching</li>
+          <li class="reveal">Mutual TLS with token-based device enrollment</li>
+          <li class="reveal">Host actions from the dashboard: restart services, CEC TV power and input, standby countdown</li>
+          <li class="reveal">Connectivity checks for devices that run no client — cameras, encoders, AV gear</li>
+          <li class="reveal">Remote screenshot capture via X11 display grab</li>
+          <li class="reveal">ntfy alerts on errors; per-role AppArmor profiles laid down by the church-service-installer</li>
+        </ul>
+        <div class="project-tech reveal">
+          <span class="tech-tag">Bash</span>
+          <span class="tech-tag">CGI</span>
+          <span class="tech-tag">mTLS</span>
+          <span class="tech-tag">Apache</span>
+          <span class="tech-tag">AppArmor</span>
+          <span class="tech-tag">jq</span>
+        </div>
+        <a href="https://github.com/MikeKemmerer/church-monitoring" class="project-link reveal" target="_blank" rel="noopener">view on github <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="project-screenshots">
+        <figure class="screenshot-frame reveal-right">
+          <div class="win-bar" aria-hidden="true"><i></i><i></i><i></i><span>dashboard</span></div>
+          <img src="images/monitoring-1.jpeg" alt="Monitoring dashboard v2 showing three hosts with health metrics, service status, and a host actions menu" loading="lazy">
+          <figcaption>Dashboard v2: host health, service status, and a host actions menu</figcaption>
+        </figure>
+        <figure class="screenshot-frame reveal-right">
+          <div class="win-bar" aria-hidden="true"><i></i><i></i><i></i><span>device-detail</span></div>
+          <img src="images/monitoring-2.jpeg" alt="Monitoring dashboard with remote kiosk screenshots and calendar image management" loading="lazy">
+          <figcaption>Remote screenshots, CEC state, and calendar image management</figcaption>
+        </figure>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ═══════════════════════ TRANSITION ═══════════════════════ -->
-<section class="transition-section">
+<section id="home" class="transition-section" data-path="~/home">
   <div class="transition-content">
-    <div class="transition-rule reveal" aria-hidden="true"></div>
-    <p class="transition-text reveal-zoom">Meanwhile, at home…</p>
-    <div class="transition-rule reveal" aria-hidden="true"></div>
+    <p class="transition-text reveal-zoom"><span class="t-prompt">$</span> cd ~/home<span class="transition-dots" aria-hidden="true">…</span></p>
+    <p class="transition-sub reveal">Meanwhile, at home.</p>
   </div>
 </section>
 
-<!-- ═══════════════════════ CHAPTER 6: MINERMANAGER ═══════════════════════ -->
-<section id="mining" class="project-section mining-theme">
-  <div class="chapter-label reveal"><span>Bonus Chapter</span></div>
-  <div class="container project-grid reverse">
-    <div class="project-info">
-      <h2 class="project-title reveal">Miner<wbr>Manager</h2>
-      <p class="project-tagline reveal">Why pay for gas when you can mine bitcoin?</p>
-      <p class="project-desc reveal">
-        When Seattle winters get cold, most people turn up the thermostat. This project
-        supplements gas heating with bitcoin mining rigs — the waste heat warms the house
-        while the miners earn cryptocurrency. MinerManager is the dashboard that keeps
-        it all under control: real-time hashrate monitoring and
-        remote management via SSH key-based authentication.
-      </p>
-      <ul class="project-features">
-        <li class="reveal">Real-time hashrate monitoring via AJAX polling</li>
-        <li class="reveal">SSH key-based authentication for secure remote miner access</li>
-        <li class="reveal">Dark-themed dashboard with card-based miner layout</li>
-        <li class="reveal">Consistent number formatting across dashboard and API</li>
-      </ul>
-      <div class="project-tech reveal">
-        <span class="tech-tag">PHP</span>
-        <span class="tech-tag">SSH</span>
-        <span class="tech-tag">JavaScript</span>
-        <span class="tech-tag">Apache</span>
-      </div>
-      <a href="https://github.com/MikeKemmerer/MinerManager" class="project-link reveal" target="_blank" rel="noopener">View on GitHub →</a>
+<!-- ═══════════════════════ BONUS 1: MINERMANAGER ═══════════════════════ -->
+<section id="mining" class="project-section theme-orange" data-path="~/home/minermanager" data-nav="home">
+  <div class="container">
+    <div class="chapter-bar reveal">
+      <span class="ch-path"><b>mike@home</b>:<em>~/minermanager</em>$</span>
+      <span class="ch-num">bonus 01</span>
     </div>
-    <div class="project-screenshots">
-      <figure class="screenshot-frame reveal-left">
-        <img src="images/mining-1.png" alt="MinerManager dashboard showing miner stats" loading="lazy">
-        <figcaption>Miner dashboard with real-time stats</figcaption>
-      </figure>
+    <div class="project-grid reverse">
+      <div class="project-info">
+        <h2 class="project-title reveal"><span class="hash">#</span> Miner<wbr>Manager</h2>
+        <p class="project-tagline reveal">Why pay for gas when you can mine bitcoin?</p>
+        <p class="project-desc reveal">
+          When Seattle winters get cold, most people turn up the thermostat. This project
+          supplements gas heating with bitcoin mining rigs — the waste heat warms the house
+          while the miners earn cryptocurrency. MinerManager is the dashboard that keeps
+          it all under control: real-time hashrate monitoring and
+          remote management via SSH key-based authentication.
+        </p>
+        <ul class="project-features">
+          <li class="reveal">Real-time hashrate monitoring via AJAX polling</li>
+          <li class="reveal">SSH key-based authentication for secure remote miner access</li>
+          <li class="reveal">Dark-themed dashboard with card-based miner layout</li>
+          <li class="reveal">Consistent number formatting across dashboard and API</li>
+        </ul>
+        <div class="project-tech reveal">
+          <span class="tech-tag">PHP</span>
+          <span class="tech-tag">SSH</span>
+          <span class="tech-tag">JavaScript</span>
+          <span class="tech-tag">Apache</span>
+        </div>
+        <a href="https://github.com/MikeKemmerer/MinerManager" class="project-link reveal" target="_blank" rel="noopener">view on github <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="project-screenshots">
+        <figure class="screenshot-frame reveal-left">
+          <div class="win-bar" aria-hidden="true"><i></i><i></i><i></i><span>miner-dashboard</span></div>
+          <img src="images/mining-1.png" alt="MinerManager dashboard showing miner stats" loading="lazy">
+          <figcaption>Miner dashboard with real-time stats</figcaption>
+        </figure>
+      </div>
     </div>
   </div>
 </section>
+
+<!-- ═══════════════════════ BONUS 2: AMBIENT-STREAMER ═══════════════════════ -->
+<section id="ambient" class="project-section alt theme-cyan" data-path="~/home/ambient-streamer" data-nav="home">
+  <div class="container">
+    <div class="chapter-bar reveal">
+      <span class="ch-path"><b>mike@home</b>:<em>~/ambient-streamer</em>$</span>
+      <span class="ch-num">bonus 02</span>
+    </div>
+    <div class="project-grid">
+      <div class="project-info">
+        <h2 class="project-title reveal"><span class="hash">#</span> Ambient <wbr>Streamer</h2>
+        <p class="project-tagline reveal">A stream that never blinks.</p>
+        <p class="project-desc reveal">
+          A headless, multi-channel, 24/7 streaming engine. Each channel pairs a
+          Liquidsoap audio engine with an FFmpeg compositor that renders a color-adaptive
+          slideshow and live audio visualization, publishes to YouTube over RTMP, and
+          exposes a low-resolution HLS preview. One rule shaped every decision:
+          a 24/7 stream must never restart FFmpeg — so every live-editable feature
+          routes around it.
+        </p>
+        <div class="stat-row reveal" role="list" aria-label="Measured on a 720p channel">
+          <div class="stat" role="listitem"><b>0.996×</b><span>realtime speed</span></div>
+          <div class="stat" role="listitem"><b>0</b><span>dropped frames</span></div>
+          <div class="stat" role="listitem"><b>~1.4 s</b><span>make-before-break restart</span></div>
+        </div>
+        <ul class="project-features">
+          <li class="reveal">Audio lives in a separate Liquidsoap process behind an Icecast fallback mount — restarting it measured a 0 s gap, versus an 18 s stall with direct output</li>
+          <li class="reveal">Images arrive on a pipe, colors change over ZMQ, and visualizations switch with <code>streamselect</code> — all on the running filtergraph</li>
+          <li class="reveal">FastAPI control plane renders per-channel Compose files and runs the supervisor, watchdog, scheduler, and live SSE updates</li>
+          <li class="reveal">Encoder profiles for libx264, NVENC, and QSV, with automatic fallback when a GPU's session cap is reached</li>
+          <li class="reveal">Armed soundboard overlays mix in over the music without interrupting the stream; the operator UI is plain JS with no build step</li>
+        </ul>
+        <div class="project-tech reveal">
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">FastAPI</span>
+          <span class="tech-tag">Docker Compose</span>
+          <span class="tech-tag">FFmpeg</span>
+          <span class="tech-tag">Liquidsoap</span>
+          <span class="tech-tag">Icecast</span>
+          <span class="tech-tag">MediaMTX</span>
+        </div>
+        <a href="https://github.com/MikeKemmerer/ambient-streamer" class="project-link reveal" target="_blank" rel="noopener">view on github <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="project-screenshots">
+        <figure class="screenshot-frame arch reveal-right">
+          <div class="win-bar" aria-hidden="true"><i></i><i></i><i></i><span>per-channel-pipeline.txt</span></div>
+          <pre class="arch-diagram" role="img" aria-label="Diagram: Liquidsoap sends MP3 to Icecast, which feeds the FFmpeg composer over HTTP. A slideshow producer feeds images over a pipe and ZMQ carries color and plugin commands. The composer publishes RTMP to MediaMTX, which relays to YouTube and an HLS preview.">
+ liquidsoap ──mp3──▶ icecast ──http──┐
+   (restart-safe:      ▲             │
+    fallback mount) ───┘             ▼
+ slideshow.py ──image2pipe──▶ ffmpeg composer ◀── zmq
+                                     │             colors
+                                     │ rtmp        plugins
+                                     ▼
+                                 mediamtx ──▶ YouTube
+                                     └─────▶ HLS preview</pre>
+          <figcaption>Every live change has its own escape hatch — none restarts FFmpeg</figcaption>
+        </figure>
+        <figure class="screenshot-frame reveal-right">
+          <div class="win-bar" aria-hidden="true"><i></i><i></i><i></i><span>operator-ui</span></div>
+          <img src="images/ambient-1.jpeg" alt="Operator UI for a running channel: live preview, pipeline health, and delivery settings" loading="lazy">
+          <figcaption>Operator UI: live preview, pipeline health, and delivery targets</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ BONUS 3: FITNESS-INSTRUCTOR-MUSIC ═══════════════════════ -->
+<section id="fitness" class="project-section theme-green" data-path="~/home/fitness-instructor-music" data-nav="home">
+  <div class="container">
+    <div class="chapter-bar reveal">
+      <span class="ch-path"><b>mike@home</b>:<em>~/fitness-instructor-music</em>$</span>
+      <span class="ch-num">bonus 03</span>
+    </div>
+    <div class="project-grid reverse">
+      <div class="project-info">
+        <h2 class="project-title reveal"><span class="hash">#</span> Fitness Instructor <wbr>Music</h2>
+        <p class="project-tagline reveal">Class music that keeps teaching when the Wi-Fi doesn't.</p>
+        <p class="project-desc reveal">
+          An offline-first progressive web app for running a fitness class. One routine
+          holds the walk-in music, the cued set list, filler between songs, and the
+          walk-out — it saves to the device first, syncs to Azure when it can, and plays
+          prepared audio with no connection at all. Routines are shared with a small
+          group through owner, editor, and player roles.
+        </p>
+        <ul class="project-features">
+          <li class="reveal">Local-first saves: durable in IndexedDB, queued for cloud sync, and never force-overwritten when revisions conflict</li>
+          <li class="reveal">Blob-backed API with ETag-conditional locks, immutable published revisions, CSRF protection, and throttled sign-in</li>
+          <li class="reveal">Cue and exercise clocks run on audio time, not UI interval ticks, so timing doesn't drift</li>
+          <li class="reveal">BS.1770 / EBU R128 loudness measurement and BPM estimates, applied only after review</li>
+          <li class="reveal">Service-worker offline shell, drag-to-reorder editing, undo/redo, and Excel and PDF exports</li>
+        </ul>
+        <div class="project-tech reveal">
+          <span class="tech-tag">TypeScript</span>
+          <span class="tech-tag">Vite</span>
+          <span class="tech-tag">Web Audio</span>
+          <span class="tech-tag">Service Worker</span>
+          <span class="tech-tag">Azure Functions</span>
+          <span class="tech-tag">Playwright</span>
+        </div>
+        <p class="project-note reveal"><span class="repo-badge">status: pilot</span> Public code, private music — the library itself is never part of the repository.</p>
+        <a href="https://github.com/MikeKemmerer/fitness-instructor-music" class="project-link reveal" target="_blank" rel="noopener">view on github <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="project-screenshots">
+        <figure class="screenshot-frame arch reveal-left">
+          <div class="win-bar" aria-hidden="true"><i></i><i></i><i></i><span>save-flow.txt</span></div>
+          <pre class="arch-diagram" role="img" aria-label="Diagram: edits save to IndexedDB on the device, queue until acknowledged, then sync through an Azure Functions API to Blob storage. Publishing creates an immutable revision that Teach mode prepares and plays offline.">
+ edit ──Save──▶ IndexedDB (this device)
+                   │ queued until acknowledged
+                   ▼
+          Azure Functions API ──▶ Blob storage
+          roles · CSRF · ETag locks
+                   │ Publish
+                   ▼
+          immutable revision ──▶ Teach mode
+                                 audio prepared,
+                                 plays offline</pre>
+          <figcaption>Save is local first; the cloud catches up when it can</figcaption>
+        </figure>
+        <figure class="screenshot-frame reveal-left">
+          <div class="win-bar" aria-hidden="true"><i></i><i></i><i></i><span>class-mode</span></div>
+          <img src="images/fitness-1.jpeg" alt="Class mode on a phone: current move in large type, next-move countdown, cue-marked progress bar, and playback controls" loading="lazy">
+          <figcaption>Class mode on a phone: current move, countdown, and cue markers</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
 
 <!-- ═══════════════════════ FOOTER ═══════════════════════ -->
 <footer class="footer">
   <div class="container">
+    <div class="footer-cmd"><span class="t-prompt">$</span> cat contact.txt</div>
     <div class="footer-grid">
       <div class="footer-brand">
         <h3>Mike Kemmerer</h3>
@@ -359,11 +672,15 @@
       <div class="footer-projects">
         <h4>Projects</h4>
         <a href="#livestream">LiveStreamScheduler</a>
+        <a href="#azure">YT Azure Streamer</a>
+        <a href="#sermons">Sermon Pipeline</a>
         <a href="#cameras">Camera Control</a>
         <a href="#calendar">Church Calendar</a>
         <a href="#kiosk">VideoKiosk2</a>
         <a href="#monitoring">Church Monitoring</a>
         <a href="#mining">MinerManager</a>
+        <a href="#ambient">Ambient Streamer</a>
+        <a href="#fitness">Fitness Instructor Music</a>
       </div>
     </div>
     <div class="footer-bottom">
@@ -371,6 +688,14 @@
     </div>
   </div>
 </footer>
+
+<!-- ═══════════════════════ STATUS BAR ═══════════════════════ -->
+<div class="statusbar" aria-hidden="true">
+  <span class="sb-mode">NORMAL</span>
+  <span class="sb-path" id="sbPath">~</span>
+  <span class="sb-pos" id="sbPos">01/13</span>
+  <span class="sb-pct" id="sbPct">0%</span>
+</div>
 
 <script src="js/animations.js"></script>
 </body>
