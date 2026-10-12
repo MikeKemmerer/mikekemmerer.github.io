@@ -312,11 +312,11 @@ code {
   border-right: 2px solid var(--fg-muted);
   border-bottom: 2px solid var(--fg-muted);
   transform: rotate(45deg);
-  animation: bob 2s ease-in-out infinite;
+  animation: bob 3s ease-in-out infinite;
 }
 @keyframes bob {
-  0%, 100% { transform: rotate(45deg) translate(0, 0); opacity: 0.4; }
-  50% { transform: rotate(45deg) translate(6px, 6px); opacity: 1; }
+  0%, 100% { transform: rotate(45deg) translate(0, 0); opacity: 0.35; }
+  50% { transform: rotate(45deg) translate(4px, 4px); opacity: 0.7; }
 }
 
 /* ── STORY ── */
@@ -708,8 +708,10 @@ code {
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  *, *::before, *::after { animation-duration: 0.001s !important; animation-delay: 0s !important; transition: none !important; }
+  *, *::before, *::after { transition: none !important; }
+  .cursor, .scroll-arrow, .typed, .t-line, .t-out { animation: none !important; }
   .typed { width: auto; }
-  .t-line, .t-out { opacity: 1; }
+  .t-line, .t-out, .cursor { opacity: 1; }
+  .scroll-arrow { opacity: 0.5; }
   .reveal, .reveal-left, .reveal-right, .reveal-zoom { opacity: 1; transform: none; }
 }
