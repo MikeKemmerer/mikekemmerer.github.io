@@ -64,7 +64,7 @@
 
         <div class="t-line" style="--d:2.6s"><span class="t-prompt">$</span> <span class="typed" style="--n:13;--d:2.6s">cat about.txt</span></div>
         <div class="t-out" style="--d:3.4s">
-          <p class="intro-subtitle">Building real-world systems where software meets hardware — from church broadcasts to bitcoin mining.</p>
+          <p class="intro-subtitle">I write software for real hardware: a church's broadcast setup, a 24/7 streaming engine, and a bitcoin-mining space heater at home.</p>
         </div>
 
         <div class="t-out intro-cta" style="--d:3.9s">
@@ -85,19 +85,18 @@
     <div class="story-text">
       <div class="story-cmd reveal"><span class="t-prompt">$</span> cat story.md</div>
       <p class="story-lead reveal">
-        When Saint Demetrios Greek Orthodox Church in Seattle needed to bring
-        the Divine Liturgy to parishioners who couldn't be there in person,
-        they didn't hire an AV company.
+        Saint Demetrios Greek Orthodox Church in Seattle wanted to livestream the
+        Divine Liturgy for parishioners who couldn't be there in person.
+        I'm a software engineer and a member of the parish, so I started building it.
       </p>
       <p class="story-body reveal">
-        They had a parishioner who happened to be a software engineer — one who saw
-        every challenge as an architecture problem waiting to be solved. What started
-        as "can we livestream the Liturgy?" became a full-stack parish AV platform:
-        automated scheduling, cloud streaming, sermon post-production, robotic cameras,
-        lobby displays, and centralized monitoring — all built from scratch, one commit at a time.
+        The first piece was the livestream itself. Each problem that came after it got
+        its own tool: scheduling, streaming from the cloud, editing sermons, controlling
+        cameras, lobby displays, and monitoring all of it. They share a calendar and a
+        few APIs, and each one lives in its own repository.
       </p>
       <p class="story-body story-cta-text reveal">
-        This is that story.
+        The chapters below cover each piece.
       </p>
     </div>
   </div>
@@ -113,19 +112,18 @@
     <div class="project-grid">
       <div class="project-info">
         <h2 class="project-title reveal"><span class="hash">#</span> LiveStream<wbr>Scheduler</h2>
-        <p class="project-tagline reveal">It starts with knowing when to go live.</p>
+        <p class="project-tagline reveal">Matches the parish calendar to YouTube broadcasts.</p>
         <p class="project-desc reveal">
-          A semi-automated scheduling tool that bridges the parish calendar with YouTube
-          and Facebook Live. It pulls upcoming services from Google Calendar, matches them
-          to scheduled broadcasts by start-time proximity, and presents everything in a
-          single Mission Control dashboard — no more hunting through the calendar to find
-          when the next Liturgy or Vespers is happening.
+          A command-line tool and web dashboard that reads upcoming services from the
+          parish Google Calendar and checks which ones already have a YouTube broadcast.
+          Matching is by start time. Services without a match show up as unscheduled,
+          with titles and descriptions ready to copy into YouTube and Facebook.
         </p>
         <ul class="project-features">
-          <li class="reveal">Calendar-aware stream matching by start time, with n-gram similarity fallback</li>
-          <li class="reveal">Live-updating web dashboard with scheduled, recorded, &amp; unscheduled views</li>
-          <li class="reveal">Facebook crossposting and calendar-driven service restart scheduling</li>
-          <li class="reveal">Deliberately narrow scope: scheduling and coverage analysis, nothing else</li>
+          <li class="reveal">Start-time matching between calendar events and broadcasts, with n-gram title similarity as a fallback</li>
+          <li class="reveal">Mission Control dashboard with scheduled, recorded, and unscheduled views; reports stream to the page as they generate</li>
+          <li class="reveal">Reference panel with saint and feast information for each service day, from the GOARCH feed and Synaxaria</li>
+          <li class="reveal">Scope is scheduling and coverage analysis. Sermon editing lives in sermon-pipeline.</li>
         </ul>
         <div class="project-tech reveal">
           <span class="tech-tag">Python</span>
@@ -157,19 +155,19 @@
     <div class="project-grid reverse">
       <div class="project-info">
         <h2 class="project-title reveal"><span class="hash">#</span> YT Azure <wbr>Streamer</h2>
-        <p class="project-tagline reveal">Infrastructure that sleeps when the stream does.</p>
+        <p class="project-tagline reveal">A streaming VM that runs only when a stream is scheduled.</p>
         <p class="project-desc reveal">
-          A parameterized Azure deployment that provisions a streaming VM with a single
-          ARM template command. The VM plays a recorded service from Blob Storage to
-          YouTube Live with ffmpeg, wakes up two minutes before each scheduled stream, and
-          deallocates afterward so nothing runs — or bills for compute — while idle.
+          One ARM template deployment creates a VM that plays a recorded service from
+          Blob Storage to YouTube Live with ffmpeg. Azure Automation starts the VM two
+          minutes before each scheduled stream and deallocates it two minutes after, so
+          compute is only billed while a stream is running.
         </p>
         <ul class="project-features">
-          <li class="reveal">One-command deploy: ARM template plus interactive <code>deploy.sh</code> / <code>deploy.ps1</code> with name, region, and SKU pre-flight checks</li>
-          <li class="reveal">No secrets on disk — stream key and credentials live in Key Vault, read via managed identity</li>
-          <li class="reveal">Azure Automation starts and stops the VM on a weekly schedule; role assignments are wired in the template</li>
-          <li class="reveal">Recordings mounted from Blob Storage with blobfuse2; ffmpeg settings tuned for stable YouTube ingest</li>
-          <li class="reveal">Password-protected web UI for playlists, schedules, logs, and monitoring, served by Caddy with automatic TLS</li>
+          <li class="reveal">Interactive <code>deploy.sh</code> and <code>deploy.ps1</code> scripts check name availability, soft-deleted Key Vaults, and regional VM support before deploying</li>
+          <li class="reveal">The stream key and web UI credentials live in Key Vault, and the VM reads them with a managed identity, so no secrets sit on disk</li>
+          <li class="reveal">Recordings are mounted from Blob Storage with blobfuse2</li>
+          <li class="reveal">Weekly schedules are edited in the web UI and synced to the Automation Account</li>
+          <li class="reveal">Password-protected web UI behind Caddy: playlist editing, an up-next queue, start and stop controls, logs, and system monitoring. TLS comes from Let's Encrypt when a custom domain is set.</li>
         </ul>
         <div class="project-tech reveal">
           <span class="tech-tag">Azure ARM</span>
@@ -199,7 +197,7 @@
     │                │
  Blob Storage    Key Vault
  (recordings)    (stream key)</pre>
-          <figcaption>One template wires the VM, storage, vault, and schedule together</figcaption>
+          <figcaption>The template wires the VM, storage, vault, and schedule together</figcaption>
         </figure>
         <figure class="screenshot-frame reveal-left">
           <div class="win-bar" aria-hidden="true"><i></i><i></i><i></i><span>web-ui</span></div>
@@ -221,20 +219,21 @@
     <div class="project-grid">
       <div class="project-info">
         <h2 class="project-title reveal"><span class="hash">#</span> Sermon <wbr>Pipeline</h2>
-        <p class="project-tagline reveal">After the Liturgy, the work is just beginning.</p>
+        <p class="project-tagline reveal">Finds the sermon in a full-service recording and prepares it for YouTube.</p>
         <p class="project-desc reveal">
-          A post-production pipeline for church broadcast recordings. It finds the
-          sermon inside a multi-hour live stream, cuts it out, writes a title and
-          description, and prepares YouTube Shorts — built as an MCP server driven by an
-          AI agent, with skill files that encode extensive Orthodox theology and
-          terminology rules so the output is always reverent and tradition-accurate.
+          A post-processing pipeline for broadcast recordings. It locates the sermon inside
+          the full service, cuts it out, writes a title and description, and picks candidate
+          clips for YouTube Shorts. The steps are exposed as tools on an MCP server that a
+          VS Code agent drives, and skill files give the agent the Orthodox terminology and
+          style rules the titles and descriptions need.
         </p>
         <ul class="project-features">
-          <li class="reveal">MCP server exposing deterministic tools for boundary detection, segment download, Shorts extraction, and validation</li>
-          <li class="reveal">Sermon boundaries from the transcript, with an audio silence-gap fallback and side-by-side redetection</li>
-          <li class="reveal">Per-sermon directory packages instead of monolithic JSON, plus append-only indexes that can be regenerated</li>
-          <li class="reveal">Layered by how deterministic the work is: scripts, then tools, then skills, then the agent — which keeps runs cheap and predictable</li>
-          <li class="reveal">Fetches the weekly Sunday School lesson with headless Chromium and works it into the liturgy description</li>
+          <li class="reveal">MCP tools for boundary detection, segment download, Shorts extraction, static-video rendering, and package validation</li>
+          <li class="reveal">Sermon start and end come from the transcript. If that fails, the pipeline falls back to long silences, and a comparison script shows redetected boundaries next to the old ones.</li>
+          <li class="reveal">Each sermon is its own directory with metadata, transcript, and boundaries. The index files are append-only JSONL and can be rebuilt from the directories.</li>
+          <li class="reveal">Work is split by how mechanical it is: scripts for bulk jobs, tools for single actions, skills for judgment calls, and an agent to sequence them</li>
+          <li class="reveal">Audio is normalized to -14 LUFS, and there is a batch workflow for the 2021 to 2024 archive</li>
+          <li class="reveal">Fetches the weekly GOARCH Kids Sunday School lesson with headless Chromium and adds it to the liturgy description</li>
         </ul>
         <div class="project-tech reveal">
           <span class="tech-tag">Python</span>
@@ -244,7 +243,7 @@
           <span class="tech-tag">FFmpeg</span>
           <span class="tech-tag">VS Code Agents</span>
         </div>
-        <p class="project-note reveal"><span class="repo-badge">repo: private</span> Described here, but not open source.</p>
+        <p class="project-note reveal"><span class="repo-badge">repo: private</span> The source isn't public.</p>
       </div>
       <div class="project-screenshots">
         <figure class="screenshot-frame arch reveal-right">
@@ -282,20 +281,21 @@
     <div class="project-grid reverse">
       <div class="project-info">
         <h2 class="project-title reveal"><span class="hash">#</span> Camera Control</h2>
-        <p class="project-tagline reveal">Every broadcast needs a camera operator. Or does it?</p>
+        <p class="project-tagline reveal">PTZ camera control from any browser.</p>
         <p class="project-desc reveal">
-          A browser-based PTZ camera control console for Panasonic AW-series and ONVIF cameras.
-          Multi-camera dashboard with one-click preset recall, automated sequences with boomerang
-          and loop modes, live MJPEG/HLS preview, and a captures gallery — all from any device
-          with a browser.
+          A browser console for Panasonic AW-series PTZ cameras, with ONVIF support for
+          other brands. A multi-camera dashboard puts each camera in its own controller with
+          preset recall, live MJPEG/HLS preview, and a captures gallery. Sequences step
+          through saved presets on a timer.
         </p>
         <ul class="project-features">
-          <li class="reveal">Multi-camera dashboard with per-camera iframe controllers</li>
-          <li class="reveal">Canvas-based virtual joystick for real-time PTZ</li>
-          <li class="reveal">Automated sequences (auto, semi-auto, boomerang) with live countdown and per-sequence speed defaults</li>
-          <li class="reveal">Preset speed slider from X-Slow to XX-Fast, plus a full AW-HE40 CGI API reference written for the project</li>
-          <li class="reveal">ONVIF support via a custom PHP SOAP proxy with WS-Security</li>
+          <li class="reveal">Multi-camera dashboard; each camera runs in its own iframe controller</li>
+          <li class="reveal">Canvas-based virtual joystick for pan and tilt</li>
+          <li class="reveal">Sequences run in auto, semi-auto, or boomerang mode, with a countdown to the next preset and a default speed per sequence</li>
+          <li class="reveal">Preset speed slider from X-Slow to XX-Fast</li>
+          <li class="reveal">ONVIF through a PHP SOAP proxy that handles WS-Security digest authentication</li>
           <li class="reveal">Captures gallery with multi-select zip download</li>
+          <li class="reveal">A written reference for the AW-HE40 CGI API, kept in the repo</li>
         </ul>
         <div class="project-tech reveal">
           <span class="tech-tag">JavaScript</span>
@@ -332,22 +332,19 @@
     <div class="project-grid">
       <div class="project-info">
         <h2 class="project-title reveal"><span class="hash">#</span> Church Calendar</h2>
-        <p class="project-tagline reveal">Keeping the community informed, beautifully.</p>
+        <p class="project-tagline reveal">A full-screen calendar for the lobby TVs.</p>
         <p class="project-desc reveal">
-          A full-screen calendar display designed to run on lobby screens and kiosks.
-          Pulls events from Google Calendar and renders them as auto-rotating slides,
-          with flyers and event images interspersed from local folders, Google Drive,
-          or Google Photos — so parishioners see both what's coming up and the artwork
-          promoting it. Liturgical color themes follow the church year, from Lenten purple
-          to Paschal gold, and the whole thing is tuned to run on a Raspberry Pi Zero 2W.
+          A Flask app that shows upcoming events from Google Calendar as full-screen slides.
+          Flyers and event images from local folders, Google Drive, or Google Photos are
+          mixed in between the event slides. It runs on a Raspberry Pi Zero 2W and keeps
+          showing cached events if the network drops.
         </p>
         <ul class="project-features">
-          <li class="reveal">Google Calendar API integration with multi-calendar support and a 90-day-ahead event cache that downstream schedulers consume</li>
-          <li class="reveal">Image slides interspersed between events — sourced from local files, Google Drive, or Google Photos</li>
-          <li class="reveal">Five liturgical color themes plus a light theme, with WCAG AA contrast compliance</li>
-          <li class="reveal">Remote display control through URL parameters for theme, font, speed, and margins</li>
-          <li class="reveal">Idempotent installer, AppArmor profile, and ntfy alerts when something breaks</li>
-          <li class="reveal">Automatic WebP conversion and offline-capable cached operation on a Raspberry Pi Zero 2W</li>
+          <li class="reveal">Multiple Google calendars, cached locally with a 90-day look-ahead by default</li>
+          <li class="reveal">Images are converted to WebP and resized so the Pi stays responsive</li>
+          <li class="reveal">Six color themes, including a light one. Theme, font, slide speed, and margins are saved in the browser on each display.</li>
+          <li class="reveal">The installer can be re-run safely, and sets up an AppArmor profile in complain mode</li>
+          <li class="reveal">ntfy notifications when something goes wrong</li>
         </ul>
         <div class="project-tech reveal">
           <span class="tech-tag">Python</span>
@@ -367,7 +364,7 @@
         <figure class="screenshot-frame reveal-right">
           <div class="win-bar" aria-hidden="true"><i></i><i></i><i></i><span>calendar-themed</span></div>
           <img src="images/calendar-2.png" alt="Calendar with different color theme" loading="lazy">
-          <figcaption>Liturgical color theme in action</figcaption>
+          <figcaption>Another color theme</figcaption>
         </figure>
       </div>
     </div>
@@ -384,21 +381,22 @@
     <div class="project-grid reverse">
       <div class="project-info">
         <h2 class="project-title reveal"><span class="hash">#</span> VideoKiosk2</h2>
-        <p class="project-tagline reveal">A display that never sleeps.</p>
+        <p class="project-tagline reveal">Lobby TVs that show the livestream, then the calendar.</p>
         <p class="project-desc reveal">
-          A Raspberry Pi kiosk system that powers the TVs around the parish — in
-          the nursery, outside the nave, anywhere parishioners gather. During services,
-          VLC streams the live broadcast; when the Liturgy ends, the display
-          automatically transitions to the calendar of upcoming events, making the
-          most of screens that are already on.
+          A Raspberry Pi kiosk that plays the HLS livestream in fullscreen VLC. When the
+          stream freezes or goes away, VLC is stopped and a fullscreen browser opens a
+          fallback page, which at the church is the calendar. A small scheduler polls an
+          API for upcoming services and restarts the kiosk ahead of each one, so the
+          stream comes back without anyone touching it.
         </p>
         <ul class="project-features">
-          <li class="reveal">Automatic livestream → calendar transition, with freeze detection and failover to a browser when the stream data goes missing</li>
-          <li class="reveal">HDMI-CEC TV power control via cec-utils</li>
-          <li class="reveal">Fire TV control over Bluetooth HID — wake, sleep, and HDMI switching</li>
-          <li class="reveal">Calendar-driven restart scheduling and a standby countdown shared with the monitoring dashboard</li>
-          <li class="reveal">Runs on Raspberry Pi OS and Ubuntu, with an X11-aware AppArmor profile and ntfy alerts</li>
-          <li class="reveal">One-command installer — also reachable through the unified church-service-installer</li>
+          <li class="reveal">Freeze detection by hashing screen captures, plus CPU-stall detection</li>
+          <li class="reveal">Fallback browser is Midori on Raspberry Pi OS and Falkon on other installs</li>
+          <li class="reveal">HDMI-CEC TV control. The TV goes to standby after the fallback page has been up for an hour, a delay that can be changed.</li>
+          <li class="reveal">Optional Fire TV control over Bluetooth HID: standby, wake with Wake-on-LAN, and HDMI restore, with automatic reconnect</li>
+          <li class="reveal">The standby countdown can be extended or shortened from the monitoring dashboard</li>
+          <li class="reveal">Ubuntu AppArmor profile in complain mode, and ntfy alerts</li>
+          <li class="reveal">The installer generates the wrapper scripts and settings, and can also be run through church-service-installer</li>
         </ul>
         <div class="project-tech reveal">
           <span class="tech-tag">Bash</span>
@@ -431,21 +429,23 @@
     <div class="project-grid">
       <div class="project-info">
         <h2 class="project-title reveal"><span class="hash">#</span> Church Monitoring</h2>
-        <p class="project-tagline reveal">Because even the best systems need oversight.</p>
+        <p class="project-tagline reveal">A dashboard for the church's AV hosts and devices.</p>
         <p class="project-desc reveal">
-          A lightweight centralized monitoring and control system for church AV infrastructure.
-          Clients collect system metrics via cron; the server fetches on demand
-          with parallel queries and caching. The HTTPS dashboard shows device health and
-          lets an operator act on it — restart a service, switch a TV's input, or
-          start a standby timer — all secured with mutual TLS and token-based enrollment.
+          A monitoring and control dashboard for the Raspberry Pis and other hosts that run
+          the church AV. Each host runs a small client that collects metrics, and the server
+          queries the clients on demand and caches the results. From the dashboard an
+          operator can restart a service, switch a TV's input, set a standby timer, or take
+          a screenshot of a kiosk's display. Server and clients authenticate each other with
+          mutual TLS.
         </p>
         <ul class="project-features">
-          <li class="reveal">Pull-based architecture: server fetches from clients on demand, in parallel, with 30-second response caching</li>
-          <li class="reveal">Mutual TLS with token-based device enrollment</li>
-          <li class="reveal">Host actions from the dashboard: restart services, CEC TV power and input, standby countdown</li>
-          <li class="reveal">Connectivity checks for devices that run no client — cameras, encoders, AV gear</li>
-          <li class="reveal">Remote screenshot capture via X11 display grab</li>
-          <li class="reveal">ntfy alerts on errors; per-role AppArmor profiles laid down by the church-service-installer</li>
+          <li class="reveal">Pull-based: the server fetches from clients in parallel and caches the responses</li>
+          <li class="reveal">Mutual TLS, with single-use tokens for enrolling new clients</li>
+          <li class="reveal">Host actions: restart services, CEC power and input, and the standby countdown</li>
+          <li class="reveal">Connectivity checks for devices that run no client, such as cameras and encoders</li>
+          <li class="reveal">Remote screenshots of a kiosk's display through X11</li>
+          <li class="reveal">Calendar image management from the dashboard: upload, archive, and restore</li>
+          <li class="reveal">ntfy alerts on errors, and AppArmor profiles for the server and client CGI scripts</li>
         </ul>
         <div class="project-tech reveal">
           <span class="tech-tag">Bash</span>
@@ -491,19 +491,20 @@
     <div class="project-grid reverse">
       <div class="project-info">
         <h2 class="project-title reveal"><span class="hash">#</span> Miner<wbr>Manager</h2>
-        <p class="project-tagline reveal">Why pay for gas when you can mine bitcoin?</p>
+        <p class="project-tagline reveal">Bitcoin miners that double as a space heater.</p>
         <p class="project-desc reveal">
-          When Seattle winters get cold, most people turn up the thermostat. This project
-          supplements gas heating with bitcoin mining rigs — the waste heat warms the house
-          while the miners earn cryptocurrency. MinerManager is the dashboard that keeps
-          it all under control: real-time hashrate monitoring and
-          remote management via SSH key-based authentication.
+          Seattle winters are cold, so some of the house's heat comes from bitcoin miners
+          running Braiins OS instead of gas. MinerManager is the dashboard for them. It
+          shows each miner's hashrate, power draw, efficiency, and fan speed, and it can
+          change a miner's power target, enable or disable its pools, or pause and resume
+          mining.
         </p>
         <ul class="project-features">
-          <li class="reveal">Real-time hashrate monitoring via AJAX polling</li>
-          <li class="reveal">SSH key-based authentication for secure remote miner access</li>
-          <li class="reveal">Dark-themed dashboard with card-based miner layout</li>
-          <li class="reveal">Consistent number formatting across dashboard and API</li>
+          <li class="reveal">Per-miner hashrate, power, efficiency (W/TH), and fan speed with fleet totals, refreshed every 10 seconds</li>
+          <li class="reveal">Power target from presets or a custom value, applied by editing <code>bosminer.toml</code> over SSH</li>
+          <li class="reveal">Pool enable and disable through the CGMiner API</li>
+          <li class="reveal">Pause and resume for individual miners</li>
+          <li class="reveal">SSH key authentication, which replaced sshpass</li>
         </ul>
         <div class="project-tech reveal">
           <span class="tech-tag">PHP</span>
@@ -534,14 +535,14 @@
     <div class="project-grid">
       <div class="project-info">
         <h2 class="project-title reveal"><span class="hash">#</span> Ambient <wbr>Streamer</h2>
-        <p class="project-tagline reveal">A stream that never blinks.</p>
+        <p class="project-tagline reveal">A 24/7 streaming engine built around never restarting FFmpeg.</p>
         <p class="project-desc reveal">
-          A headless, multi-channel, 24/7 streaming engine. Each channel pairs a
-          Liquidsoap audio engine with an FFmpeg compositor that renders a color-adaptive
-          slideshow and live audio visualization, publishes to YouTube over RTMP, and
-          exposes a low-resolution HLS preview. One rule shaped every decision:
-          a 24/7 stream must never restart FFmpeg — so every live-editable feature
-          routes around it.
+          A headless engine for multi-channel, 24/7 streams. Each channel has a Liquidsoap
+          audio process and an FFmpeg compositor that renders a color-adaptive image
+          slideshow and an audio visualization, publishes to YouTube over RTMP, and serves
+          a low-resolution HLS preview. YouTube can end a broadcast after a sustained gap in
+          data, so the design rule is that FFmpeg never restarts, and every feature that
+          changes the stream while it's live goes around that rule.
         </p>
         <div class="stat-row reveal" role="list" aria-label="Measured on a 720p channel">
           <div class="stat" role="listitem"><b>0.996×</b><span>realtime speed</span></div>
@@ -549,17 +550,19 @@
           <div class="stat" role="listitem"><b>~1.4 s</b><span>make-before-break restart</span></div>
         </div>
         <ul class="project-features">
-          <li class="reveal">Audio lives in a separate Liquidsoap process behind an Icecast fallback mount — restarting it measured a 0 s gap, versus an 18 s stall with direct output</li>
-          <li class="reveal">Images arrive on a pipe, colors change over ZMQ, and visualizations switch with <code>streamselect</code> — all on the running filtergraph</li>
-          <li class="reveal">FastAPI control plane renders per-channel Compose files and runs the supervisor, watchdog, scheduler, and live SSE updates</li>
-          <li class="reveal">Encoder profiles for libx264, NVENC, and QSV, with automatic fallback when a GPU's session cap is reached</li>
-          <li class="reveal">Armed soundboard overlays mix in over the music without interrupting the stream; the operator UI is plain JS with no build step</li>
+          <li class="reveal">Audio runs in its own Liquidsoap process behind an Icecast fallback mount. Restarting Liquidsoap measured a 0 s gap, where a direct connection stalled the compositor for 18 s.</li>
+          <li class="reveal">Images arrive on a pipe, colors change over ZMQ, and visualization plugins switch with <code>streamselect</code>, all on the running filtergraph</li>
+          <li class="reveal">When FFmpeg does have to restart (resolution, frame rate, encoder), the replacement starts before the old one stops. The gap measured about 1.4 s over 18 restarts, and YouTube sees a new ingest session.</li>
+          <li class="reveal">A FastAPI control plane renders each channel's Compose file and runs the supervisor, watchdog, and scheduler. The operator UI is plain JS with live updates over SSE.</li>
+          <li class="reveal">A channel can deliver to YouTube, to internal HLS video, or to audio-only HLS, and a LAN directory lists what is on air</li>
+          <li class="reveal">Soundboard effects mix over the music behind an arm-then-submit control, without interrupting the stream</li>
         </ul>
         <div class="project-tech reveal">
           <span class="tech-tag">Python</span>
           <span class="tech-tag">FastAPI</span>
           <span class="tech-tag">Docker Compose</span>
           <span class="tech-tag">FFmpeg</span>
+          <span class="tech-tag">NVENC</span>
           <span class="tech-tag">Liquidsoap</span>
           <span class="tech-tag">Icecast</span>
           <span class="tech-tag">MediaMTX</span>
@@ -579,7 +582,7 @@
                                      ▼
                                  mediamtx ──▶ YouTube
                                      └─────▶ HLS preview</pre>
-          <figcaption>Every live change has its own escape hatch — none restarts FFmpeg</figcaption>
+          <figcaption>Each live change has its own path that avoids restarting FFmpeg</figcaption>
         </figure>
         <figure class="screenshot-frame reveal-right">
           <div class="win-bar" aria-hidden="true"><i></i><i></i><i></i><span>operator-ui</span></div>
@@ -601,20 +604,21 @@
     <div class="project-grid reverse">
       <div class="project-info">
         <h2 class="project-title reveal"><span class="hash">#</span> Fitness Instructor <wbr>Music</h2>
-        <p class="project-tagline reveal">Class music that keeps teaching when the Wi-Fi doesn't.</p>
+        <p class="project-tagline reveal">Class music that plays without a connection.</p>
         <p class="project-desc reveal">
-          An offline-first progressive web app for running a fitness class. One routine
-          holds the walk-in music, the cued set list, filler between songs, and the
-          walk-out — it saves to the device first, syncs to Azure when it can, and plays
-          prepared audio with no connection at all. Routines are shared with a small
-          group through owner, editor, and player roles.
+          An offline-first web app for teaching a fitness class. One routine holds
+          everything for a class: walk-in songs, the set list with timed cues, filler
+          between songs, and walk-out songs. Saving writes to the device first and syncs
+          to Azure when a connection is available, and a prepared class plays with no
+          connection at all. A small group shares routines through owner, editor, and
+          player accounts.
         </p>
         <ul class="project-features">
-          <li class="reveal">Local-first saves: durable in IndexedDB, queued for cloud sync, and never force-overwritten when revisions conflict</li>
-          <li class="reveal">Blob-backed API with ETag-conditional locks, immutable published revisions, CSRF protection, and throttled sign-in</li>
-          <li class="reveal">Cue and exercise clocks run on audio time, not UI interval ticks, so timing doesn't drift</li>
-          <li class="reveal">BS.1770 / EBU R128 loudness measurement and BPM estimates, applied only after review</li>
-          <li class="reveal">Service-worker offline shell, drag-to-reorder editing, undo/redo, and Excel and PDF exports</li>
+          <li class="reveal">Local-first saves kept in IndexedDB and queued for cloud sync. A conflicting revision is never force-overwritten.</li>
+          <li class="reveal">API on Azure Functions and Blob storage with ETag-conditional locks and immutable published revisions. Sessions use secure cookies, CSRF protection, and throttled sign-in.</li>
+          <li class="reveal">Cue and exercise timing follows the audio clock, not UI timer ticks</li>
+          <li class="reveal">Full-track loudness measurement (BS.1770 / EBU R128) and BPM estimates, both applied only after review</li>
+          <li class="reveal">Service-worker offline shell and stored audio, drag-to-reorder editing, undo and redo, and Excel and PDF cue-sheet export</li>
         </ul>
         <div class="project-tech reveal">
           <span class="tech-tag">TypeScript</span>
@@ -624,7 +628,7 @@
           <span class="tech-tag">Azure Functions</span>
           <span class="tech-tag">Playwright</span>
         </div>
-        <p class="project-note reveal"><span class="repo-badge">status: pilot</span> Public code, private music — the library itself is never part of the repository.</p>
+        <p class="project-note reveal"><span class="repo-badge">status: pilot</span> Not yet proven on a real iPhone with a Bluetooth speaker. The code is public; the music isn't.</p>
         <a href="https://github.com/MikeKemmerer/fitness-instructor-music" class="project-link reveal" target="_blank" rel="noopener">view on github <span aria-hidden="true">→</span></a>
       </div>
       <div class="project-screenshots">
@@ -641,7 +645,7 @@
           immutable revision ──▶ Teach mode
                                  audio prepared,
                                  plays offline</pre>
-          <figcaption>Save is local first; the cloud catches up when it can</figcaption>
+          <figcaption>Saves go to the device first and sync to the cloud afterward</figcaption>
         </figure>
         <figure class="screenshot-frame reveal-left">
           <div class="win-bar" aria-hidden="true"><i></i><i></i><i></i><span>class-mode</span></div>
@@ -662,7 +666,7 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <h3>Mike Kemmerer</h3>
-        <p>Security Operations Engineer at Microsoft.<br>Building things that matter, one commit at a time.</p>
+        <p>Security Operations Engineer at Microsoft.<br>Church AV and streaming projects on the side.</p>
       </div>
       <div class="footer-links">
         <h4>Links</h4>
