@@ -8,7 +8,7 @@ The site will pick them up automatically — no code changes needed.
 ## Church AV Projects
 
 ### LiveStreamScheduler
-- [x] `images/livestream-1.jpg` — Dashboard view showing list of scheduled/upcoming streams
+- [x] `images/livestream-1.jpeg` — Dashboard view showing list of scheduled/upcoming streams (retaken Oct 2026)
 
 ### Camera Control
 - [x] `images/cameras-1.png` — Single camera PTZ control page with preset thumbnail grid
@@ -22,10 +22,24 @@ The site will pick them up automatically — no code changes needed.
 - [x] `images/kiosk-1.png` — Photo of the kiosk running on a lobby TV, or a screenshot of the VLC stream output
 
 ### Church Monitoring
-- [x] `images/monitoring-1.png` — Monitoring dashboard overview (all devices)
-- [x] `images/monitoring-2.png` — Single device detail view with CEC controls and/or remote screenshot
+- [x] `images/monitoring-1.jpeg` — Monitoring dashboard overview (all devices; hostnames and internal IPs blurred; retaken Oct 2026)
+- [x] `images/monitoring-2.jpeg` — Dashboard with remote kiosk screenshots and calendar image management (hostnames and internal IPs blurred; retaken Oct 2026)
 
 ## Home Project
 
 ### MinerManager
 - [x] `images/mining-1.png` — Dashboard with miner cards showing hashrate, temps, status
+
+## Optional — New Chapters (need wiring)
+
+These chapters currently show an architecture diagram instead of a screenshot. If you capture
+one, drop it in `images/` and tell me — each needs a `<figure>` added to `index.html`.
+Crop out hostnames, IPs, stream keys, subscription IDs, and any private titles first.
+
+- [x] `images/azure-1.jpeg` — YT Azure Streamer web UI (cropped to streamer card + service health; wired into the site)
+- [x] `images/ambient-1.jpeg` — Ambient Streamer operator UI (cropped; channel names, track titles, and LAN URL blurred; wired into the site)
+- [x] `images/fitness-1.jpeg` — Fitness Instructor Music class mode on a phone (wired into the site)
+
+## Retakes
+
+None pending. `kiosk-1.png`, `cameras-1.png`, `cameras-2.png`, `calendar-1.png`, `calendar-2.png`, and `mining-1.png` are staying as-is.

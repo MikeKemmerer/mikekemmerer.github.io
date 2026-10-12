@@ -1,38 +1,30 @@
 /* ═══════════════════════════════════════════════════════════════
-   MIKE KEMMERER — PORTFOLIO ANIMATIONS
-   Scroll reveals, progress bar, mobile nav, parallax
-   No frameworks — vanilla IntersectionObserver
+   MIKE KEMMERER — PORTFOLIO BEHAVIOR
+   Scroll reveals, progress bar, mobile nav, status bar
+   No frameworks — vanilla JS
    ═══════════════════════════════════════════════════════════════ */
 
 (function () {
   'use strict';
 
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ── SCROLL PROGRESS BAR ── */
-  const progressBar = document.getElementById('scrollProgress');
-
-  function updateProgress() {
-    const scrollTop = window.scrollY;
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-    progressBar.style.width = progress + '%';
-  }
-
-  /* ── NAV SCROLL STATE ── */
-  const nav = document.getElementById('nav');
-
-  function updateNav() {
-    if (window.scrollY > 60) {
-      nav.classList.add('scrolled');
-    } else {
-      nav.classList.remove('scrolled');
-    }
-  }
+  var progressBar = document.getElementById('scrollProgress');
+  var nav = document.getElementById('nav');
+  var navToggle = document.getElementById('navToggle');
+  var navLinks = document.getElementById('navLinks');
+  var sbPath = document.getElementById('sbPath');
+  var sbPos = document.getElementById('sbPos');
+  var sbPct = document.getElementById('sbPct');
+  var sections = Array.prototype.slice.call(document.querySelectorAll('section[data-path]'));
+  var navAnchors = navLinks ? Array.prototype.slice.call(navLinks.querySelectorAll('a')) : [];
 
   /* ── MOBILE NAV TOGGLE ── */
-  const navToggle = document.getElementById('navToggle');
-  const navLinks = document.getElementById('navLinks');
+  function closeNav() {
+    navLinks.classList.remove('open');
+    navToggle.classList.remove('active');
+    navToggle.setAttribute('aria-expanded', 'false');
+  }
 
   if (navToggle && navLinks) {
     navToggle.addEventListener('click', function () {
@@ -40,93 +32,88 @@
       navToggle.classList.toggle('active');
       navToggle.setAttribute('aria-expanded', navLinks.classList.contains('open').toString());
     });
-
-    // Close mobile nav when a link is clicked
-    navLinks.querySelectorAll('a').forEach(function (link) {
-      link.addEventListener('click', function () {
-        navLinks.classList.remove('open');
-        navToggle.classList.remove('active');
-        navToggle.setAttribute('aria-expanded', 'false');
-      });
-    });
+    navAnchors.forEach(function (link) { link.addEventListener('click', closeNav); });
   }
 
-  /* ── INTERSECTION OBSERVER — Scroll Reveals ── */
-  const revealSelectors = '.reveal, .reveal-left, .reveal-right, .reveal-zoom';
+  /* ── SCROLL REVEALS (once per element) ── */
+  var revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-zoom');
 
-  const observerOptions = {
-    root: null,
-    rootMargin: '0px 0px -80px 0px',
-    threshold: 0.1
-  };
-
-  const revealObserver = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('active');
-      } else {
-        entry.target.classList.remove('active');
-      }
-    });
-  }, observerOptions);
-
-  // If reduced motion, reveal everything immediately
-  if (prefersReducedMotion) {
-    document.querySelectorAll(revealSelectors).forEach(function (el) {
-      el.classList.add('active');
-    });
+  if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+    revealEls.forEach(function (el) { el.classList.add('active'); });
   } else {
-    document.querySelectorAll(revealSelectors).forEach(function (el) {
-      revealObserver.observe(el);
-    });
+    var revealObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -80px 0px', threshold: 0.1 });
+    revealEls.forEach(function (el) { revealObserver.observe(el); });
   }
 
-  /* ── SMOOTH SCROLL FOR NAV LINKS ── */
+  /* ── SMOOTH SCROLL FOR ANCHORS ── */
   document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
     anchor.addEventListener('click', function (e) {
       var target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        e.preventDefault();
-        var offset = 80; // nav height
-        var top = target.getBoundingClientRect().top + window.scrollY - offset;
-        window.scrollTo({ top: top, behavior: 'smooth' });
-      }
+      if (!target) return;
+      e.preventDefault();
+      var top = target.getBoundingClientRect().top + window.scrollY - 70;
+      window.scrollTo({ top: top, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
     });
   });
 
-  /* ── PARALLAX ON INTRO ── */
-  var introContent = document.querySelector('.intro-content');
+  /* ── SCROLL-DRIVEN STATE ── */
+  function pad(n) { return n < 10 ? '0' + n : String(n); }
 
-  function updateParallax() {
-    if (prefersReducedMotion || !introContent) return;
-    var scroll = window.scrollY;
-    var vh = window.innerHeight;
-    if (scroll < vh) {
-      var factor = scroll / vh;
-      introContent.style.transform = 'translateY(' + (scroll * 0.3) + 'px)';
-      introContent.style.opacity = 1 - factor * 0.8;
+  function currentSectionIndex() {
+    var marker = window.innerHeight * 0.4;
+    var idx = 0;
+    for (var i = 0; i < sections.length; i++) {
+      if (sections[i].getBoundingClientRect().top <= marker) idx = i;
     }
+    return idx;
   }
 
-  /* ── THROTTLED SCROLL HANDLER ── */
+  var lastIdx = -1;
+
+  function update() {
+    var scrollTop = window.scrollY;
+    var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    var pct = docHeight > 0 ? Math.min(100, (scrollTop / docHeight) * 100) : 0;
+
+    progressBar.style.width = pct + '%';
+    nav.classList.toggle('scrolled', scrollTop > 60);
+
+    if (sbPct) sbPct.textContent = Math.round(pct) + '%';
+
+    if (!sections.length) return;
+    var idx = currentSectionIndex();
+    if (idx === lastIdx) return;
+    lastIdx = idx;
+
+    var section = sections[idx];
+    if (sbPath) sbPath.textContent = section.getAttribute('data-path');
+    if (sbPos) sbPos.textContent = pad(idx + 1) + '/' + pad(sections.length);
+
+    var key = section.getAttribute('data-nav') || section.id;
+    navAnchors.forEach(function (a) {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + key);
+    });
+  }
+
   var ticking = false;
 
   function onScroll() {
-    if (!ticking) {
-      requestAnimationFrame(function () {
-        updateProgress();
-        updateNav();
-        updateParallax();
-        ticking = false;
-      });
-      ticking = true;
-    }
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function () {
+      update();
+      ticking = false;
+    });
   }
 
   window.addEventListener('scroll', onScroll, { passive: true });
-
-  // Initial calls
-  updateProgress();
-  updateNav();
-
+  window.addEventListener('resize', onScroll, { passive: true });
+  update();
 })();
